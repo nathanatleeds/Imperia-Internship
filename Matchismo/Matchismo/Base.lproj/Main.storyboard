@@ -22,7 +22,7 @@
                                 <rect key="frame" x="125" y="247" width="125" height="172"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                <state key="normal" title="A♣︎" backgroundImage="cardfront">
+                                <state key="normal" backgroundImage="cardback">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
@@ -50,6 +50,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cardfront" width="186" height="259"/>
+        <image name="cardback" width="364" height="512"/>
     </resources>
 </document>
