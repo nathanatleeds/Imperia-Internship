@@ -16,15 +16,21 @@
 @property (nonatomic, strong) CardMatchingGame *game;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
-@property (weak, nonatomic) IBOutlet UIButton *newGameButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *gameButton;
+
 
 
 @end
 
 @implementation CardGameViewController
-- (IBAction)newGameAction:(id)sender {
-    _game = [[CardMatchingGame alloc] initWithCardCount: [self.cardButtons count] usingDeck:[self createDeck]];
+
+- (IBAction)gameTouch:(id)sender
+{
+    _game = nil;
+    [self updateUI];
 }
+
 
 -(CardMatchingGame *) game
 {
@@ -69,5 +75,7 @@
 -(UIImage *) backgroundImageForCard: (Card *) card
 {
     return [UIImage imageNamed:card.isChosen ? @"cardfront" : @"cardback"];
+}
+- (IBAction)newGameButton:(id)sender {
 }
 @end
