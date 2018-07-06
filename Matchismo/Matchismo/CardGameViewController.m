@@ -38,9 +38,9 @@
     return _game;
 }
 
--(Deck *) createDeck
+-(Deck *) createDeck //abstract
 {
-    return [PlayingCardDeck new];
+    return nil;
 }
 
 
