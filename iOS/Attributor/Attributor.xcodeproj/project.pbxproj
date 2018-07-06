@@ -15,6 +15,7 @@
 		C16E63D220EF4D1000B064F4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E63D120EF4D1000B064F4 /* main.m */; };
 		C16E63DC20EF4D1000B064F4 /* AttributorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E63DB20EF4D1000B064F4 /* AttributorTests.m */; };
 		C16E63E720EF4D1000B064F4 /* AttributorUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E63E620EF4D1000B064F4 /* AttributorUITests.m */; };
+		C16E63F920EF8BF300B064F4 /* TextStatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E63F820EF8BF300B064F4 /* TextStatsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		C16E63E220EF4D1000B064F4 /* AttributorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AttributorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16E63E620EF4D1000B064F4 /* AttributorUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributorUITests.m; sourceTree = "<group>"; };
 		C16E63E820EF4D1000B064F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C16E63F720EF8BF300B064F4 /* TextStatsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextStatsViewController.h; sourceTree = "<group>"; };
+		C16E63F820EF8BF300B064F4 /* TextStatsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextStatsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 				C16E63C220EF4D0B00B064F4 /* AppDelegate.h */,
 				C16E63C320EF4D0B00B064F4 /* AppDelegate.m */,
 				C16E63C520EF4D0B00B064F4 /* ViewController.h */,
+				C16E63F720EF8BF300B064F4 /* TextStatsViewController.h */,
+				C16E63F820EF8BF300B064F4 /* TextStatsViewController.m */,
 				C16E63C620EF4D0B00B064F4 /* ViewController.m */,
 				C16E63C820EF4D0B00B064F4 /* Main.storyboard */,
 				C16E63CB20EF4D1000B064F4 /* Assets.xcassets */,
@@ -265,6 +270,7 @@
 				C16E63C720EF4D0B00B064F4 /* ViewController.m in Sources */,
 				C16E63D220EF4D1000B064F4 /* main.m in Sources */,
 				C16E63C420EF4D0B00B064F4 /* AppDelegate.m in Sources */,
+				C16E63F920EF8BF300B064F4 /* TextStatsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
