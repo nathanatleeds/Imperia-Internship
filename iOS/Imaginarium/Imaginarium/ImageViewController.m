@@ -8,7 +8,7 @@
 
 #import "ImageViewController.h"
 
-@interface ImageViewController () <UIScrollViewDelegate>
+@interface ImageViewController () <UIScrollViewDelegate, UISplitViewControllerDelegate>
 @property (nonatomic, strong) UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (nonatomic, strong) UIImage *image;
@@ -82,6 +82,8 @@
 {
     self.imageView.image = image;
     [self.imageView sizeToFit];
+    self.imageView.frame = CGRectMake(0,0,image.size.width, image.size.height);
+    
     self.scrollView.contentSize = self.image ? self.image.size : CGSizeZero;
     [self.spinner stopAnimating];
 }
@@ -90,6 +92,29 @@
 {
     [super viewDidLoad];
     [self.scrollView addSubview:self.imageView];
+    
+}
+
+#pragma mark - UISplitViewControllerDelegate
+-(void)awakeFromNib
+{
+    self.splitViewController.delegate = self;
+}
+
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return UIInterfaceOrientationIsPortrait(orientation);
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc
+{
+    barButtonItem.title = aViewController.title;
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(nonnull UIViewController *)aViewController invalidatingBarButtonItem:(nonnull UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = nil;
     
 }
 

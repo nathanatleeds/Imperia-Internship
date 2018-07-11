@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Idh-vJ-uFD">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Split View Controller-->
+        <scene sceneID="9xU-AT-QFa">
+            <objects>
+                <splitViewController id="Idh-vJ-uFD" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="77o-yY-YAh" kind="relationship" relationship="masterViewController" id="5Vt-lN-Xqt"/>
+                        <segue destination="gSp-85-eM7" kind="relationship" relationship="detailViewController" id="Obk-Do-YuE"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hxY-9t-9na" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1525" y="-864"/>
+        </scene>
+        <!--Shutterbug-->
+        <scene sceneID="PJS-vM-d3i">
+            <objects>
+                <tableViewController id="Hg9-OI-KvF" customClass="justPostedFlickrPhotosTVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="iKk-e7-rc4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Flickr Photo Cell" id="roX-Ne-sjp">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="roX-Ne-sjp" id="7mE-MX-yYe">
+                                    <rect key="frame" x="0.0" y="0.0" width="286" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Hg9-OI-KvF" id="6qT-ee-ldi"/>
+                            <outlet property="delegate" destination="Hg9-OI-KvF" id="HWP-oh-7M0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shutterbug" id="PlN-NJ-RNb"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="Rlq-mL-Cn9">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="fetchPhotos" destination="Hg9-OI-KvF" eventType="valueChanged" id="b3C-VC-vYp"/>
+                        </connections>
+                    </refreshControl>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="515-Ay-tkk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="-864"/>
+        </scene>
+        <!--Image View Controller-->
+        <scene sceneID="3yr-8F-LV8">
+            <objects>
+                <viewController id="oT6-Xf-ica" customClass="ImageViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Skx-kf-kXG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0j8-Kp-JYO">
+                                <rect key="frame" x="0.0" y="64" width="768" height="960"/>
+                            </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="l0F-Sm-YYK">
+                                <rect key="frame" x="374" y="502" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="l0F-Sm-YYK" firstAttribute="centerY" secondItem="Skx-kf-kXG" secondAttribute="centerY" id="13Q-Dj-Vz4"/>
+                            <constraint firstItem="0j8-Kp-JYO" firstAttribute="top" secondItem="iLf-Lz-MuO" secondAttribute="top" id="2cG-on-76n"/>
+                            <constraint firstAttribute="trailing" secondItem="0j8-Kp-JYO" secondAttribute="trailing" id="IRP-b0-s1g"/>
+                            <constraint firstItem="0j8-Kp-JYO" firstAttribute="bottom" secondItem="iLf-Lz-MuO" secondAttribute="bottom" id="Nv6-E1-wzC"/>
+                            <constraint firstItem="l0F-Sm-YYK" firstAttribute="centerX" secondItem="Skx-kf-kXG" secondAttribute="centerX" id="aQt-ep-x31"/>
+                            <constraint firstItem="0j8-Kp-JYO" firstAttribute="leading" secondItem="Skx-kf-kXG" secondAttribute="leading" id="dUJ-jr-iNn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="iLf-Lz-MuO"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="R6d-hI-KDb"/>
+                    <connections>
+                        <outlet property="scrollView" destination="0j8-Kp-JYO" id="Hgg-fl-Ri0"/>
+                        <outlet property="spinner" destination="l0F-Sm-YYK" id="vNZ-JO-94a"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n5Y-xK-vFY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="451"/>
+        </scene>
+        <!--Shutterbug-->
+        <scene sceneID="EDw-p5-cdq">
+            <objects>
+                <navigationController title="Shutterbug" automaticallyAdjustsScrollViewInsets="NO" id="77o-yY-YAh" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Cqr-rO-WAg">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Hg9-OI-KvF" kind="relationship" relationship="rootViewController" id="hgx-Os-xUr"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G0n-lS-3ll" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-612" y="-864"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4Wj-y7-x1C">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gSp-85-eM7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yUL-He-ddr">
+                        <rect key="frame" x="0.0" y="20" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="oT6-Xf-ica" kind="relationship" relationship="rootViewController" id="zpZ-W9-V2K"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wPr-52-h2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-612" y="451"/>
+        </scene>
+    </scenes>
+</document>
