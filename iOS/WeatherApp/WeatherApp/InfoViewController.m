@@ -8,6 +8,7 @@
 
 #import "InfoViewController.h"
 #import "WeekTableViewCell.h"
+#import "SavedViewController.h"
 
 @interface InfoViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -17,6 +18,9 @@
 @end
 
 @implementation InfoViewController
+
+
+
 
 
 #pragma mark - Image
@@ -50,10 +54,7 @@
     WeekTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath] ;
 
     
-//
     return cell;
-//}
-
 }
 
 - (void)viewDidLoad {
@@ -68,7 +69,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -76,6 +77,6 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
 
 @end

@@ -47,6 +47,12 @@
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="dateText" destination="yA3-f9-1TR" id="z4S-hq-hS0"/>
+                <outlet property="maxTempText" destination="NLr-nY-cpW" id="N6W-bK-VUp"/>
+                <outlet property="minTempText" destination="hW1-F5-6hs" id="cMj-KB-K7e"/>
+                <outlet property="weatherIcon" destination="mCz-Ib-Uyx" id="LZG-9J-HCi"/>
+            </connections>
             <point key="canvasLocation" x="38.5" y="82"/>
         </tableViewCell>
     </objects>

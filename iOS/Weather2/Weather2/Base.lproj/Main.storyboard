@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--City Weather-->
+        <scene sceneID="qsF-ah-l3y">
+            <objects>
+                <viewController id="ng9-30-6dl" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cK6-n4-OHA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="21d-zu-VLP">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Uyz-Gf-JQE"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iuD-pr-UL0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="VJn-fp-rZB" detailTextLabel="vnb-hn-cq6" rowHeight="66" style="IBUITableViewCellStyleSubtitle" id="TH8-qg-Ca3">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="TH8-qg-Ca3" id="bYF-uf-P6Z">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VJn-fp-rZB">
+                                                    <rect key="frame" x="15" y="13" width="33.5" height="20.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vnb-hn-cq6">
+                                                    <rect key="frame" x="15" y="36.5" width="44" height="14.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ng9-30-6dl" id="nlH-MB-hfU"/>
+                                    <outlet property="delegate" destination="ng9-30-6dl" id="C92-iH-lte"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iuD-pr-UL0" firstAttribute="leading" secondItem="21d-zu-VLP" secondAttribute="leading" id="BWS-ET-NxK"/>
+                            <constraint firstItem="iuD-pr-UL0" firstAttribute="bottom" secondItem="coM-GO-VkL" secondAttribute="bottom" id="G07-En-DJo"/>
+                            <constraint firstItem="21d-zu-VLP" firstAttribute="top" secondItem="coM-GO-VkL" secondAttribute="top" id="GNk-eE-gJs"/>
+                            <constraint firstItem="iuD-pr-UL0" firstAttribute="trailing" secondItem="21d-zu-VLP" secondAttribute="trailing" id="Qc1-je-N41"/>
+                            <constraint firstAttribute="trailing" secondItem="21d-zu-VLP" secondAttribute="trailing" id="bQQ-iR-cuB"/>
+                            <constraint firstItem="iuD-pr-UL0" firstAttribute="top" secondItem="21d-zu-VLP" secondAttribute="bottom" id="kJE-MZ-uu4"/>
+                            <constraint firstItem="21d-zu-VLP" firstAttribute="leading" secondItem="cK6-n4-OHA" secondAttribute="leading" id="zjg-cP-9JK"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="coM-GO-VkL"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="City Weather" id="qhM-N6-ofX"/>
+                    <connections>
+                        <outlet property="searchBar" destination="21d-zu-VLP" id="ULt-hh-06u"/>
+                        <outlet property="searchDisplayController" destination="Xnm-0v-L1h" id="bC8-gN-bO7"/>
+                        <outlet property="tableView" destination="iuD-pr-UL0" id="PTD-jj-ug0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mYL-p8-UJC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="Xnm-0v-L1h">
+                    <connections>
+                        <outlet property="delegate" destination="ng9-30-6dl" id="7Jp-9L-pKd"/>
+                        <outlet property="searchContentsController" destination="ng9-30-6dl" id="7FF-s7-tj7"/>
+                        <outlet property="searchResultsDataSource" destination="ng9-30-6dl" id="qYV-xk-Emr"/>
+                        <outlet property="searchResultsDelegate" destination="ng9-30-6dl" id="KGL-tg-aXO"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="342" y="80"/>
+        </scene>
+    </scenes>
+</document>

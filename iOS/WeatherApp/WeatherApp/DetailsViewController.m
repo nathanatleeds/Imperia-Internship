@@ -7,12 +7,17 @@
 //
 
 #import "DetailsViewController.h"
+#import "DetailsCollectionViewCell.h"
 
-@interface DetailsViewController ()
+@interface DetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
 @end
 
 @implementation DetailsViewController
+
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +27,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 7;
+}
+
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+   DetailsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"Details Cell" forIndexPath:indexPath];
+    // return the cell
+    return cell;
 }
 
 /*

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C13E642C20F87B150086A98B /* DetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E642B20F87B150086A98B /* DetailsCollectionViewCell.m */; };
 		C16E65A320F733BC00B064F4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E65A220F733BC00B064F4 /* AppDelegate.m */; };
 		C16E65A620F733BC00B064F4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C16E65A520F733BC00B064F4 /* ViewController.m */; };
 		C16E65A920F733BC00B064F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C16E65A720F733BC00B064F4 /* Main.storyboard */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C13E642A20F87B150086A98B /* DetailsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsCollectionViewCell.h; sourceTree = "<group>"; };
+		C13E642B20F87B150086A98B /* DetailsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsCollectionViewCell.m; sourceTree = "<group>"; };
 		C16E659E20F733BC00B064F4 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C16E65A120F733BC00B064F4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C16E65A220F733BC00B064F4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -62,16 +65,16 @@
 		C16E65CA20F733BD00B064F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C16E65D620F748EF00B064F4 /* InfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoViewController.h; sourceTree = "<group>"; };
 		C16E65D720F748EF00B064F4 /* InfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoViewController.m; sourceTree = "<group>"; };
-		C16E65DC20F7762900B064F4 /* WeekTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeekTableViewCell.h; sourceTree = "<group>"; };
-		C16E65DD20F7762900B064F4 /* WeekTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeekTableViewCell.m; sourceTree = "<group>"; };
-		C16E65DE20F7762900B064F4 /* WeekTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeekTableViewCell.xib; sourceTree = "<group>"; };
+		C16E65DC20F7762900B064F4 /* WeekTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = WeekTableViewCell.h; path = ../../WeatherApp2/WeatherApp2/Info/WeekTableViewCell.h; sourceTree = "<group>"; };
+		C16E65DD20F7762900B064F4 /* WeekTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = WeekTableViewCell.m; path = ../../WeatherApp2/WeatherApp2/Info/WeekTableViewCell.m; sourceTree = "<group>"; };
+		C16E65DE20F7762900B064F4 /* WeekTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WeekTableViewCell.xib; path = ../../WeatherApp2/WeatherApp2/Info/WeekTableViewCell.xib; sourceTree = "<group>"; };
 		C16E65E120F7889F00B064F4 /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		C16E65E220F7889F00B064F4 /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		C16E65E420F789B800B064F4 /* SavedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedViewController.h; sourceTree = "<group>"; };
 		C16E65E520F789B800B064F4 /* SavedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedViewController.m; sourceTree = "<group>"; };
-		C16E65EC20F78AD200B064F4 /* SavedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SavedTableViewCell.h; sourceTree = "<group>"; };
-		C16E65ED20F78AD200B064F4 /* SavedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedTableViewCell.m; sourceTree = "<group>"; };
-		C16E65EE20F78AD200B064F4 /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedTableViewCell.xib; sourceTree = "<group>"; };
+		C16E65EC20F78AD200B064F4 /* SavedTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SavedTableViewCell.h; path = ../../WeatherApp2/WeatherApp2/Saved/SavedTableViewCell.h; sourceTree = "<group>"; };
+		C16E65ED20F78AD200B064F4 /* SavedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SavedTableViewCell.m; path = ../../WeatherApp2/WeatherApp2/Saved/SavedTableViewCell.m; sourceTree = "<group>"; };
+		C16E65EE20F78AD200B064F4 /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SavedTableViewCell.xib; path = ../../WeatherApp2/WeatherApp2/Saved/SavedTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				C16E65EE20F78AD200B064F4 /* SavedTableViewCell.xib */,
 				C16E65E120F7889F00B064F4 /* DetailsViewController.h */,
 				C16E65E220F7889F00B064F4 /* DetailsViewController.m */,
+				C13E642A20F87B150086A98B /* DetailsCollectionViewCell.h */,
+				C13E642B20F87B150086A98B /* DetailsCollectionViewCell.m */,
 				C16E65D720F748EF00B064F4 /* InfoViewController.m */,
 				C16E65D620F748EF00B064F4 /* InfoViewController.h */,
 				C16E65DC20F7762900B064F4 /* WeekTableViewCell.h */,
@@ -299,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C16E65AC20F733BC00B064F4 /* WeatherApp.xcdatamodeld in Sources */,
+				C13E642C20F87B150086A98B /* DetailsCollectionViewCell.m in Sources */,
 				C16E65DF20F7762900B064F4 /* WeekTableViewCell.m in Sources */,
 				C16E65EF20F78AD200B064F4 /* SavedTableViewCell.m in Sources */,
 				C16E65E620F789B800B064F4 /* SavedViewController.m in Sources */,

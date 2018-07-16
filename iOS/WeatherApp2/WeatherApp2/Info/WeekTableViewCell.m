@@ -10,6 +10,18 @@
 
 @implementation WeekTableViewCell
 
+
+-(void)populate: (NSString *)date imageCode: (NSString *)code maxTemp: (NSString *)max minTemp:(NSString *)min
+{
+    self.dateText.text = date;
+    
+    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [NSString stringWithFormat:@"https://www.metaweather.com/static/img/weather/png/64/%@.png", code]]];
+    self.weatherIcon.image = [UIImage imageWithData: imageData];
+    
+    self.maxTempText.text = max;
+    self.minTempText.text = min;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code

@@ -17,14 +17,16 @@
 
 @implementation ViewController
 
-
 - (void)viewDidLoad {
+
+    
+    
     [super viewDidLoad];
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    _totalData = [[NSMutableArray alloc] initWithObjects:@"One", @"Two", @"Three", @"Four", @"Five", @"Six", @"Seven", nil];
+
 }
 
 #pragma mark - Search Bar
@@ -33,24 +35,25 @@
 {
     if(searchText.length == 0)
     {
-        self.isFiltered = NO;
+      //  self.isFiltered = NO;
     }
     else
     {
-        self.isFiltered = YES;
-        self.filteredData = [[NSMutableArray alloc] init];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/search/?query=%@", searchText]]];
+        [request setHTTPMethod:@"GET"];
         
-        for(NSString *str in self.totalData)
-        {
-            NSRange dataRange = [str rangeOfString:searchText options:NSCaseInsensitiveSearch];
-            if(dataRange.location != NSNotFound)
-            {
-                [self.filteredData addObject:str];
-            }
-        }
+        [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+         ^(NSData * _Nullable data,
+           NSURLResponse * _Nullable response,
+           NSError * _Nullable error) {
+             
+            self.totalData = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+            
+         }] resume];
+        [self.tableView reloadData];
     }
     
-    [self.tableView reloadData];
+    
 }
 
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
@@ -67,33 +70,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if(self.isFiltered)
-    {
-        return [self.filteredData count];
-    }
-    else
-    {
         return [self.totalData count];
-    }
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if(!cell)
+  if(!cell)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+       cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    if(!self.isFiltered)
-    {
-        cell.textLabel.text = [self.totalData objectAtIndex:indexPath.row];
-    }
-    else
-    {
-        cell.textLabel.text = [self.filteredData objectAtIndex:indexPath.row];
-    }
+        cell.textLabel.text = [self.totalData objectAtIndex:indexPath.row][@"title"];
+        cell.detailTextLabel.text = [self.totalData objectAtIndex:indexPath.row][@"latt_long"];
+
     
     return cell;
 }
@@ -121,7 +111,30 @@
             {
                 if([segue.destinationViewController isKindOfClass:[InfoViewController class]])
                 {
-                    [self prepareInfoViewController:segue.destinationViewController];
+                    NSInteger woeid = [[self.totalData objectAtIndex:indexPath.row][@"woeid"] integerValue];
+                    
+                    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL: [NSURL URLWithString:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/%ld", woeid]]];
+                    [request setHTTPMethod:@"GET"];
+                    
+                    [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
+                      ^(NSData * _Nullable data,
+                        NSURLResponse * _Nullable response,
+                        NSError * _Nullable error) {
+                          
+                          NSDictionary *cityInfo = [NSDictionary new];
+                          cityInfo = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                          //NSLog(@"%@", cityInfo);
+                          
+                          NSArray *weather = [cityInfo objectForKey:@"consolidated_weather"];
+                          
+                          NSDictionary *currentTemp = [weather firstObject];
+                          float currentMax = [[currentTemp objectForKey:@"max_temp"] floatValue];
+                          
+                          NSLog(@"%f", currentMax);
+                          
+                      }] resume];
+                    
+                   // [self prepareInfoViewController:segue.destinationViewController];//[@"woeid"]];
                 }
             }
         }

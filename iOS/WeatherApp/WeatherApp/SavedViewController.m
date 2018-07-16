@@ -9,7 +9,7 @@
 #import "SavedViewController.h"
 #import "SavedTableViewCell.h"
 
-@interface SavedViewController ()
+@interface SavedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *savedTable;
 
 @end
@@ -30,8 +30,7 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Saved Cell";
-    SavedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath] ;
+    SavedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SavedTableViewCell class]) forIndexPath:indexPath] ;
     
     return cell;
 }
@@ -39,11 +38,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.savedTable registerNib:[UINib nibWithNibName:NSStringFromClass([SavedTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SavedTableViewCell class])];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    [self.savedTable registerNib:[UINib nibWithNibName:NSStringFromClass([SavedTableViewCell class]) bundle:nil] forCellReuseIdentifier:@"Saved Cell"];
+
 }
 
 
