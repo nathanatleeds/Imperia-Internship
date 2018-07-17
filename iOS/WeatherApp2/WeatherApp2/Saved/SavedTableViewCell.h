@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface SavedTableViewCell : UITableViewCell
+@property (unsafe_unretained, nonatomic) IBOutlet UITextView *placeText;
+
+@property (unsafe_unretained, nonatomic) IBOutlet UITextView *tenpText;
+
+@property (unsafe_unretained, nonatomic) IBOutlet UIImageView *weatherImage;
+
+-(void)populate: (NSString *)place imageCode: (NSString *)code temp: (float)temp;
 
 @end

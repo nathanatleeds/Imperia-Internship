@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SavedViewController">
             <connections>
+                <outlet property="savedButton" destination="AXa-rO-WvC" id="as2-WE-ifZ"/>
+                <outlet property="savedTable" destination="flw-u3-hnW" id="EeH-qw-QDg"/>
                 <outlet property="view" destination="Oij-Mk-Q1N" id="uBa-vs-m6J"/>
             </connections>
         </placeholder>
@@ -23,6 +25,19 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flw-u3-hnW">
                     <rect key="frame" x="0.0" y="78" width="414" height="614"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AXa-rO-WvC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                        <state key="normal" title="Add"/>
+                        <connections>
+                            <action selector="clickedAdd:" destination="-1" eventType="touchUpInside" id="nsH-wq-HeO"/>
+                        </connections>
+                    </button>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Na3-UV-Pkd"/>
+                        <outlet property="delegate" destination="-1" id="mkd-8W-vLw"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

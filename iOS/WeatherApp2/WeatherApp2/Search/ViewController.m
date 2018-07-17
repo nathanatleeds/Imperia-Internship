@@ -9,6 +9,7 @@
 #import "ServerCommunicationManager.h"
 #import "ViewController.h"
 #import "InfoViewController.h"
+#import "SavedViewController.h"
 
 @interface ViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSMutableArray *totalData;
@@ -23,12 +24,25 @@
     self.searchBar.delegate = self;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if([defaults objectForKey:@"Saved"] && [[defaults objectForKey:@"Saved"] count])
+    {
+        SavedViewController *savedScreen = [[SavedViewController alloc]initWithNibName:@"SavedViewController" bundle:nil];
+        NSLog(@"%@", self.navigationController.childViewControllers);
+        NSMutableArray *contr = [NSMutableArray arrayWithArray:self.navigationController.childViewControllers];
+        contr[0] = savedScreen;
+        [self.navigationController setViewControllers:contr];
+//        [self.navigationController pushViewController:savedScreen animated:YES];
+    }
+    
 }
 
 #pragma mark - Search Bar
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    NSLog(@"%@", searchText);
     if(searchText.length == 0)
     {
     }
@@ -91,7 +105,6 @@
     infoScreen.woeid = woeid;
     [self.navigationController pushViewController:infoScreen animated:YES];
 }
-
 
 
 #pragma mark - Response Handler

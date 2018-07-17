@@ -10,4 +10,7 @@
 
 @interface DetailsViewController : UIViewController
 
+@property (nonatomic) NSString *date;
+@property (nonatomic) NSInteger woeid;
+
 @end

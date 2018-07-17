@@ -25,7 +25,10 @@
 		C13E64C620FC96DA0086A98B /* SavedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E64C320FC96DA0086A98B /* SavedTableViewCell.m */; };
 		C13E64CA20FC96FE0086A98B /* WeekTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E64C820FC96FD0086A98B /* WeekTableViewCell.m */; };
 		C13E64CD20FC98230086A98B /* ServerCommunicationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E64CC20FC98230086A98B /* ServerCommunicationManager.m */; };
-		C13E64CF20FCCDAA0086A98B /* WeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13E64C720FC96FD0086A98B /* WeekTableViewCell.xib */; };
+		C13E64D320FDB8690086A98B /* DetailsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C13E64D120FDB8690086A98B /* DetailsCollectionViewCell.m */; };
+		C13E64D420FDB8690086A98B /* DetailsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13E64D220FDB8690086A98B /* DetailsCollectionViewCell.xib */; };
+		C13E64D520FDEA730086A98B /* WeekTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13E64C720FC96FD0086A98B /* WeekTableViewCell.xib */; };
+		C13E64D620FDEA820086A98B /* SavedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13E64C420FC96DA0086A98B /* SavedTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,7 +73,7 @@
 		C13E64B520FC950C0086A98B /* SavedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedViewController.m; sourceTree = "<group>"; };
 		C13E64B620FC950C0086A98B /* SavedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedViewController.xib; sourceTree = "<group>"; };
 		C13E64B920FC95AB0086A98B /* DetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
-		C13E64BA20FC95AB0086A98B /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		C13E64BA20FC95AB0086A98B /* DetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; wrapsLines = 1; };
 		C13E64BB20FC95AB0086A98B /* DetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsViewController.xib; sourceTree = "<group>"; };
 		C13E64C320FC96DA0086A98B /* SavedTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SavedTableViewCell.m; sourceTree = "<group>"; };
 		C13E64C420FC96DA0086A98B /* SavedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedTableViewCell.xib; sourceTree = "<group>"; };
@@ -80,6 +83,9 @@
 		C13E64C920FC96FD0086A98B /* WeekTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeekTableViewCell.h; sourceTree = "<group>"; };
 		C13E64CB20FC98230086A98B /* ServerCommunicationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ServerCommunicationManager.h; path = WeatherApp2/ServerCommunicationManager.h; sourceTree = SOURCE_ROOT; };
 		C13E64CC20FC98230086A98B /* ServerCommunicationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = ServerCommunicationManager.m; path = WeatherApp2/ServerCommunicationManager.m; sourceTree = SOURCE_ROOT; };
+		C13E64D020FDB8690086A98B /* DetailsCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailsCollectionViewCell.h; sourceTree = "<group>"; };
+		C13E64D120FDB8690086A98B /* DetailsCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailsCollectionViewCell.m; sourceTree = "<group>"; };
+		C13E64D220FDB8690086A98B /* DetailsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailsCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +175,9 @@
 			isa = PBXGroup;
 			children = (
 				C13E64BB20FC95AB0086A98B /* DetailsViewController.xib */,
+				C13E64D020FDB8690086A98B /* DetailsCollectionViewCell.h */,
+				C13E64D120FDB8690086A98B /* DetailsCollectionViewCell.m */,
+				C13E64D220FDB8690086A98B /* DetailsCollectionViewCell.xib */,
 				C13E64B920FC95AB0086A98B /* DetailsViewController.h */,
 				C13E64BA20FC95AB0086A98B /* DetailsViewController.m */,
 			);
@@ -314,12 +323,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C13E64CF20FCCDAA0086A98B /* WeekTableViewCell.xib in Resources */,
 				C13E648A20FC93430086A98B /* LaunchScreen.storyboard in Resources */,
 				C13E64B820FC950C0086A98B /* SavedViewController.xib in Resources */,
 				C13E648720FC93430086A98B /* Assets.xcassets in Resources */,
 				C13E64B320FC947C0086A98B /* InfoViewController.xib in Resources */,
 				C13E648220FC933E0086A98B /* Main.storyboard in Resources */,
+				C13E64D520FDEA730086A98B /* WeekTableViewCell.xib in Resources */,
+				C13E64D620FDEA820086A98B /* SavedTableViewCell.xib in Resources */,
+				C13E64D420FDB8690086A98B /* DetailsCollectionViewCell.xib in Resources */,
 				C13E64BD20FC95AB0086A98B /* DetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +365,7 @@
 				C13E64B220FC947C0086A98B /* InfoViewController.m in Sources */,
 				C13E64CD20FC98230086A98B /* ServerCommunicationManager.m in Sources */,
 				C13E64CA20FC96FE0086A98B /* WeekTableViewCell.m in Sources */,
+				C13E64D320FDB8690086A98B /* DetailsCollectionViewCell.m in Sources */,
 				C13E647C20FC933E0086A98B /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,6 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InfoViewController">
             <connections>
+                <outlet property="dateLabel" destination="ThM-Jt-Tqz" id="aXX-up-Du7"/>
+                <outlet property="detailsButton" destination="M9e-Xr-jU4" id="yv5-Op-s46"/>
+                <outlet property="saveButton" destination="Kd6-2r-voc" id="bFa-JN-2GG"/>
                 <outlet property="tempText" destination="IWd-gj-FfC" id="sS3-Js-O0Q"/>
                 <outlet property="view" destination="Ujf-0i-BLl" id="Eb1-yn-Dyc"/>
                 <outlet property="weatherImage" destination="Knt-1m-TXi" id="42R-ky-kWd"/>
@@ -29,7 +32,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="76" id="4Xt-Lw-0or"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SmH-fi-Iih">
@@ -47,11 +50,9 @@
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="65" id="qWX-1I-xFI"/>
                     </constraints>
                     <state key="normal" title="Details"/>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kd6-2r-voc">
-                    <rect key="frame" x="360" y="84" width="34" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Save"/>
+                    <connections>
+                        <action selector="showDertails:" destination="-1" eventType="touchUpInside" id="RMW-CB-PCe"/>
+                    </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Knt-1m-TXi">
                     <rect key="frame" x="143.66666666666666" y="127" width="126.99999999999997" height="126"/>
@@ -60,6 +61,21 @@
                         <constraint firstAttribute="width" constant="127" id="gut-t1-g4R"/>
                     </constraints>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ThM-Jt-Tqz">
+                    <rect key="frame" x="95" y="76" width="224" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kd6-2r-voc">
+                    <rect key="frame" x="347" y="55" width="47" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="not_saved"/>
+                    <connections>
+                        <action selector="saveCity:" destination="-1" eventType="touchUpInside" id="46M-yH-lGh"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -79,4 +95,7 @@
             <viewLayoutGuide key="safeArea" id="YN8-mB-syq"/>
         </view>
     </objects>
+    <resources>
+        <image name="not_saved" width="28" height="28"/>
+    </resources>
 </document>
