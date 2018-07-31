@@ -11,6 +11,7 @@
 #import "SavedTableViewCell.h"
 #import "ViewController.h"
 #import "InfoViewController.h"
+#import "MBProgressHUD.h"
 
 @interface SavedViewController () <ServerCommunicationDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic) NSUserDefaults *defaults;
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *savedId;
 @property (nonatomic, strong) NSMutableArray *savedNames;
 @property (weak, nonatomic) IBOutlet UIButton *savedButton;
+@property (nonatomic) NSUInteger index;
 
 @end
 
@@ -26,17 +28,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.index = 0;
+    self.navigationItem.hidesBackButton = YES;
     self.savedTable.allowsMultipleSelectionDuringEditing = NO;
     self.defaults = [NSUserDefaults standardUserDefaults];
     [self.savedTable registerNib:[UINib nibWithNibName:NSStringFromClass([SavedTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SavedTableViewCell class])];
-    
-    for(NSNumber *num in [self.defaults objectForKey:@"Saved"])
-    {
-        NSLog(@"%@", num);
-        [[ServerCommunicationManager sharedInstance] sendRequest:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/%@/", num] delegate:self];
 
-    }
-    
+    self.savedId = [self.defaults objectForKey:@"Saved"];
+    //NSLog(@"%@", [cityId objectAtIndex:index]);
+
+    [[ServerCommunicationManager sharedInstance] sendRequest:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/%@/", [self.savedId objectAtIndex: self.index]] delegate:self];
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -48,7 +49,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
         //[self.savedTable removeObjectAtIndex:indexPath.row];
-        [self.savedId removeObjectAtIndex:indexPath.row];
+       // [self.savedId removeObjectAtIndex:indexPath.row];
         [self.savedNames removeObjectAtIndex:indexPath.row];
         [self.savedWeather removeObjectAtIndex:indexPath.row];
         [self.defaults setObject:self.savedId forKey:@"Saved"];
@@ -123,19 +124,38 @@
 
 -(void)didReceiveMyResponse:(id)dataInfo
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
+    
     if([dataInfo isKindOfClass: [NSDictionary class]])
     {
         NSDictionary *currentWeather = [dataInfo objectForKey: @"consolidated_weather"][0];
-        [self.savedId addObject:[dataInfo objectForKey:@"woeid"]];
+        //[self.savedId addObject:[dataInfo objectForKey:@"woeid"]];
 
         [self.savedNames addObject:[dataInfo objectForKey: @"title"]];
         
         [self.savedWeather addObject: currentWeather];
         
+        if([self.savedId count] > [self.savedNames count]) {
+            self.index++;
+              [[ServerCommunicationManager sharedInstance] sendRequest:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/%@/", [self.savedId objectAtIndex: self.index]] delegate:self];
+        }
+        else
+        {
+           // NSLog(@"Stop");
+
+            [self.savedTable reloadData];
+        }
+        
+
         //NSLog(@"%@", self.savedNames);
-        [self.savedTable reloadData];
+       
 
     }
+    
+
+
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -143,6 +163,9 @@
     //Do whatever you like with indexpath.row
     
     InfoViewController *infoScreen = [[InfoViewController alloc]initWithNibName:@"InfoViewController" bundle:nil];
+    //NSInteger woeid = [[self.savedId objectAtIndex:indexPath.row] integerValue];
+
+    
     NSInteger woeid = [[self.savedId objectAtIndex:indexPath.row] integerValue];
     infoScreen.woeid = woeid;
     [self.navigationController pushViewController:infoScreen animated:YES];

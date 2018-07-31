@@ -25,7 +25,7 @@
 -(void)populate: (NSString *)place imageCode: (NSString *)code temp: (float)temp
 {
     self.placeText.text = place;
-    self.tenpText.text = [NSString stringWithFormat:@"%f", temp];
+    self.tenpText.text = [NSString stringWithFormat:@"%ld Cº", lround(temp)];
     
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [NSString stringWithFormat:@"https://www.metaweather.com/static/img/weather/png/%@.png", code]]];
     self.weatherImage.image = [UIImage imageWithData: imageData];

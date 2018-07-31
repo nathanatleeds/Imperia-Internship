@@ -17,9 +17,9 @@
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: [NSString stringWithFormat:@"https://www.metaweather.com/static/img/weather/png/%@.png", code]]];
     self.imageView.image = [UIImage imageWithData: imageData];
     
-    self.tempLabel.text = [NSString stringWithFormat:@"%f Cº", temp];
-    self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %f", humid];
-    self.windSpeedLabel.text = [NSString stringWithFormat:@"Wind speed: %f", wSpeed];
+    self.tempLabel.text = [NSString stringWithFormat:@"%ld Cº", lroundf(temp)];
+    self.humidityLabel.text = [NSString stringWithFormat:@"Humidity: %ld", lroundf(humid)];
+    self.windSpeedLabel.text = [NSString stringWithFormat:@"Wind speed: %ld", lroundf(wSpeed)];
     self.windDirectionLabel.text = [NSString stringWithFormat:@"Wind direction: %@", wDirection];
 }
 

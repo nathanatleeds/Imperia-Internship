@@ -10,6 +10,7 @@
 #import "DetailsCollectionViewCell.h"
 #import "ServerCommunicationManager.h"
 #import "ViewController.h"
+#import "MBProgressHUD.h"
 
 @interface DetailsViewController () <ServerCommunicationDelegate, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *hoursCollectionView;
@@ -78,11 +79,18 @@
         ViewController *searchScreen = [[ViewController alloc]initWithNibName:@"ViewController" bundle:nil];
         //   NSInteger woeid = [[self.totalData objectAtIndex:indexPath.row][@"woeid"] integerValue];
 
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
+        
         [self.navigationController pushViewController:searchScreen animated:YES];
     }
     else
     {
         self.hoursData = dataInfo;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+        });
         [self.hoursCollectionView reloadData];
     }
     

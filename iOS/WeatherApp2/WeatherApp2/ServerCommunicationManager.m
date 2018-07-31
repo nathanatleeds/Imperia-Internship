@@ -7,6 +7,7 @@
 //
 
 #import "ServerCommunicationManager.h"
+#import "MBProgressHUD.h"
 
 static ServerCommunicationManager *shared = nil;
 
@@ -77,6 +78,13 @@ static ServerCommunicationManager *shared = nil;
 #pragma mark - Request Handler
 -(void) sendRequest: (NSString *)url delegate: (id)dele
 {
+    
+    [MBProgressHUD showHUDAddedTo: ((UIViewController *)dele).view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        // Do something...
+
+    });
+    
     // Create the request.
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: url]];
     

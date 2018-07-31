@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "InfoViewController.h"
 #import "SavedViewController.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) NSMutableArray *totalData;
@@ -110,11 +111,18 @@
 #pragma mark - Response Handler
 -(void)didReceiveMyResponse:(id)dataInfo
 {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
     //NSLog(@"%@", dataInfo);
     if([dataInfo isKindOfClass: [NSArray class]])
     {
         self.totalData = dataInfo;
+        
+
+        
         [self.tableView reloadData];
+        
     }
     
 }

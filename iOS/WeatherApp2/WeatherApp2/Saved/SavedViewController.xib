@@ -22,11 +22,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flw-u3-hnW">
-                    <rect key="frame" x="0.0" y="78" width="414" height="614"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="flw-u3-hnW">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="AXa-rO-WvC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="1143" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="23"/>
                         <state key="normal" title="Add"/>
@@ -42,10 +42,10 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="flw-u3-hnW" firstAttribute="leading" secondItem="Oij-Mk-Q1N" secondAttribute="leading" id="3t7-ki-KAd"/>
-                <constraint firstItem="mj5-SW-nvZ" firstAttribute="bottom" secondItem="flw-u3-hnW" secondAttribute="bottom" constant="44" id="b3y-kd-MsQ"/>
-                <constraint firstItem="flw-u3-hnW" firstAttribute="top" secondItem="mj5-SW-nvZ" secondAttribute="top" constant="58" id="rt4-Pw-HUQ"/>
-                <constraint firstAttribute="trailing" secondItem="flw-u3-hnW" secondAttribute="trailing" id="wci-HN-yg4"/>
+                <constraint firstItem="flw-u3-hnW" firstAttribute="bottom" secondItem="mj5-SW-nvZ" secondAttribute="bottom" id="WIL-da-fch"/>
+                <constraint firstItem="flw-u3-hnW" firstAttribute="trailing" secondItem="mj5-SW-nvZ" secondAttribute="trailing" id="dQ0-E9-bIv"/>
+                <constraint firstItem="flw-u3-hnW" firstAttribute="top" secondItem="Oij-Mk-Q1N" secondAttribute="top" id="ePH-EV-jSC"/>
+                <constraint firstItem="flw-u3-hnW" firstAttribute="leading" secondItem="mj5-SW-nvZ" secondAttribute="leading" id="rtS-di-9NF"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="mj5-SW-nvZ"/>
         </view>
