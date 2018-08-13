@@ -21,9 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="agZ-jd-M5e">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="agZ-jd-M5e">
                     <rect key="frame" x="0.0" y="74" width="414" height="662"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bE1-kh-Uaw">
                         <size key="itemSize" width="150" height="525"/>
@@ -38,6 +37,12 @@
                 </collectionView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="agZ-jd-M5e" firstAttribute="top" secondItem="zuK-7p-jNd" secondAttribute="top" constant="54" id="TPc-Vb-hEe"/>
+                <constraint firstItem="agZ-jd-M5e" firstAttribute="bottom" secondItem="zuK-7p-jNd" secondAttribute="bottom" id="XaC-JW-Wu3"/>
+                <constraint firstItem="agZ-jd-M5e" firstAttribute="trailing" secondItem="zuK-7p-jNd" secondAttribute="trailing" id="aFY-cG-leG"/>
+                <constraint firstItem="agZ-jd-M5e" firstAttribute="leading" secondItem="zuK-7p-jNd" secondAttribute="leading" id="dC0-g3-JSH"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="zuK-7p-jNd"/>
             <point key="canvasLocation" x="33" y="53"/>
         </view>

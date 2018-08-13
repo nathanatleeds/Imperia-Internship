@@ -34,7 +34,7 @@
     self.defaults = [NSUserDefaults standardUserDefaults];
     [self.savedTable registerNib:[UINib nibWithNibName:NSStringFromClass([SavedTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([SavedTableViewCell class])];
 
-    self.savedId = [self.defaults objectForKey:@"Saved"];
+    //self.savedId = [self.defaults objectForKey:@"Saved"];
     //NSLog(@"%@", [cityId objectAtIndex:index]);
 
     [[ServerCommunicationManager sharedInstance] sendRequest:[NSString stringWithFormat: @"https://www.metaweather.com/api/location/%@/", [self.savedId objectAtIndex: self.index]] delegate:self];
@@ -49,7 +49,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //add code here for when you hit delete
         //[self.savedTable removeObjectAtIndex:indexPath.row];
-       // [self.savedId removeObjectAtIndex:indexPath.row];
+        [self.savedId removeObjectAtIndex:indexPath.row];
         [self.savedNames removeObjectAtIndex:indexPath.row];
         [self.savedWeather removeObjectAtIndex:indexPath.row];
         [self.defaults setObject:self.savedId forKey:@"Saved"];
@@ -117,7 +117,7 @@
 
 -(NSMutableArray *)savedId
 {
-    if(!_savedId) _savedId = [NSMutableArray new];
+    if(!_savedId) _savedId = [[NSMutableArray alloc] initWithArray:[self.defaults objectForKey:@"Saved"]];
     
     return _savedId;
 }
