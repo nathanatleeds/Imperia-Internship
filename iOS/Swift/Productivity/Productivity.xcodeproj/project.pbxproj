@@ -19,6 +19,7 @@
 		C132E1CF212D2C5D007106EB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1CE212D2C5D007106EB /* User.swift */; };
 		C132E1D3212D56A3007106EB /* OptionsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */; };
 		C132E1D6212D5BDC007106EB /* OptionsPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1D4212D5BDC007106EB /* OptionsPopup.storyboard */; };
+		C132E1D8212D874B007106EB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1D7212D874B007106EB /* EditViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C132E1CE212D2C5D007106EB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPopupViewController.swift; sourceTree = "<group>"; };
 		C132E1D5212D5BDC007106EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Productivity/View/Base.lproj/OptionsPopup.storyboard; sourceTree = "<group>"; };
+		C132E1D7212D874B007106EB /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				C132E1AD212BE45D007106EB /* TasksViewController.swift */,
+				C132E1D7212D874B007106EB /* EditViewController.swift */,
 				C132E1CC212C3263007106EB /* CreateViewController.swift */,
 				C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */,
 			);
@@ -190,6 +193,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C132E1D8212D874B007106EB /* EditViewController.swift in Sources */,
 				C132E1CD212C3263007106EB /* CreateViewController.swift in Sources */,
 				C132E1C9212C02DD007106EB /* Task.swift in Sources */,
 				C132E1CF212D2C5D007106EB /* User.swift in Sources */,

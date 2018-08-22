@@ -112,7 +112,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         selectedIndex = indexPath.row
         selectedTask = sampleData[indexPath.row]
         self.performSegue(withIdentifier: "showOptionsPopup", sender: self)
-         tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
         
     }
     
@@ -268,14 +268,33 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //MARK: -Popup delegate
-    func optionsChanged(action: String) {
-        if(action == "undo") {
+    func optionsChanged(action: String, task: Task) {
+        switch action {
+        case "undo":
             print ("Undone")
             sampleUser.undoTask(undoneTask: sampleData[selectedIndex])
             sampleData[selectedIndex].undoTask()
             taskTableView.reloadData()
             updateUserLabels()
+            
+        case "edit":
+            print ("Edited")
+            sampleData[selectedIndex] = task
+            taskTableView.reloadData()
+            
+        case "delete":
+            print ("Deleted")
+            sampleData.remove(at: selectedIndex)
+            sampleUser.coins += 500
+            
+            updateUserLabels()
+            taskTableView.reloadData()
+            
+        default:
+            print ("Default")
         }
+
+      
     }
     
     //MARK:- Labels

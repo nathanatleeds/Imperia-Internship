@@ -1,29 +1,32 @@
 //
-//  CreateViewController.swift
+//  EditViewController.swift
 //  Productivity
 //
-//  Created by slaviyana chervenkondeva on 21.08.18.
+//  Created by slaviyana chervenkondeva on 22.08.18.
 //  Copyright © 2018 Slavyana Chervenkondeva. All rights reserved.
 //
 
 import UIKit
 
-protocol CreateTaskDelegate {
-    func taskReceived(task: Task)
+protocol EditTaskDelegate {
+    func receivedEditedTask(newTask: Task)
+    func receivedDeletedTask()
 }
 
 
-class CreateViewController: UIViewController, UITextFieldDelegate {
-    var newTask : Task = Task()
-    var delegate : CreateTaskDelegate?
+class EditViewController: UIViewController, UITextFieldDelegate {
     
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
-
+    
+    var task : Task = Task()
+    var delegate : EditTaskDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleTextField.text = task.title
+        infoTextField.text = task.info
+        
         titleTextField.delegate = self
         infoTextField.delegate = self
         
@@ -39,12 +42,40 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         view.addGestureRecognizer(tap)
-        
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        let alert = UIAlertController(title: "Delete task", message: "Sell your task for 500 coins?", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            (alert: UIAlertAction!) in
+            self.delegate?.receivedDeletedTask()
+            self.dismiss(animated: true)
+            
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
+    }
+    
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+
+        task.title = titleTextField.text!
+        task.info = infoTextField.text!
+        self.delegate?.receivedEditedTask(newTask: task)
+        dismiss(animated: true)
+    }
+    
+    
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
+        dismiss(animated: true)
     }
     
     //MARK:- Keyboard
@@ -77,20 +108,6 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
-
-    //MARK:- Button actions
-    
-    @IBAction func cancelButtonPressed(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func createButtonPressed(_ sender: UIButton) {
-        newTask.title = titleTextField.text!
-        newTask.info = infoTextField.text!
-        
-        delegate?.taskReceived(task: newTask)
-        self.navigationController?.popViewController(animated: true)
-    }
     
     //MARK:- TextField delegate methods
     
@@ -107,3 +124,4 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
+
