@@ -42,6 +42,8 @@ class EditViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         view.addGestureRecognizer(tap)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

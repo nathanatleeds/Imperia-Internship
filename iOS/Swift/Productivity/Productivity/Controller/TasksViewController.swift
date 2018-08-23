@@ -7,19 +7,16 @@
 //
 
 import UIKit
+import SwiftDate
+import UserNotifications
 
 class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateTaskDelegate, OptionsPopupDelegate  {
     
     @IBOutlet weak var taskTableView: UITableView!
-    
     @IBOutlet weak var moveButton: UIButton!
-    
     @IBOutlet weak var levelLabel: UILabel!
-    
     @IBOutlet weak var coinsLabel: UILabel!
-    
     @IBOutlet weak var expLabel: UILabel!
-    
     @IBOutlet weak var progressView: UIProgressView!
     
     
@@ -31,19 +28,50 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         // Do any additional setup after loading the view, typically from a nib.
         taskTableView.delegate = self
         taskTableView.dataSource = self
         
         taskTableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "taskCell")
-
-        
         updateUserLabels()
         testData()
         configureTableView()
+        notification()
     }
     
+    func notification() {
+        //get the notification center
+        let center =  UNUserNotificationCenter.current()
+        
+        //create the content for the notification
+        let content = UNMutableNotificationContent()
+        content.title = " Jurassic Park"
+        content.subtitle = "Lunch"
+        content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
+        content.sound = UNNotificationSound.default()
+        
+        
+        //notification trigger can be based on time, calendar or location
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:5.0, repeats: false)
+        
+        //create request to display
+        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
+        
+        
+        //add request to notification center
+        center.add(request) { (error) in
+            if error != nil {
+                print("error \(String(describing: error))")
+            }
+        }
+        
 
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -111,6 +139,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         selectedIndex = indexPath.row
         selectedTask = sampleData[indexPath.row]
+        print(sampleData[indexPath.row].weekDays)
         self.performSegue(withIdentifier: "showOptionsPopup", sender: self)
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -126,8 +155,8 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         // if more sections
         // productToMove = sections[sourceIndexPath.section].sampleData[sourceIndexPath.row]
-        print("Source: %d", sourceIndexPath.row)
-        print("Destination: %d", destinationIndexPath.row)
+//        print("Source: %d", sourceIndexPath.row)
+//        print("Destination: %d", destinationIndexPath.row)
         
         let productToMove = sampleData[sourceIndexPath.row]
         
@@ -135,18 +164,29 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         sampleData.remove(at: sourceIndexPath.row)
 
         
-        for task in sampleData {
-            print(task.title)
-        }
-        print("----")
+        var region = Region.local
+        var date = DateInRegion(Date(), region: region)
+        print(region)
+        print(date.compare(.isToday))
+        print(date.weekday)
         
+        
+        print(date.minute)
+        print(date.weekdayName(.short))
+    
+        
+//        for task in sampleData {
+//            print(task.title)
+//        }
+//        print("----")
+
         // move to destination
         sampleData.insert(productToMove, at: destinationIndexPath.row)
-        
-        for task in sampleData {
-            print(task.title)
-        }
-        print("----")
+
+//        for task in sampleData {
+//            print(task.title)
+//        }
+//        print("----")
 
     }
     

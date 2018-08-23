@@ -25,8 +25,8 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var timesADayTextField: UITextField!
     @IBOutlet weak var everyXWeeksTextField: UITextField!
     
-    
     @IBOutlet var weekButtons: [UIButton]!
+    @IBOutlet weak var everyDayButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +34,11 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         infoTextField.delegate = self
         timesADayTextField.delegate = self
         everyXWeeksTextField.delegate = self
+        
+        everyDayButton.isSelected = true
+        timesADayTextField.text = "1"
+        everyXWeeksTextField.text = "1"
+        
         
         // Hide keyboard when tapping outside of text field
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -79,23 +84,25 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     @objc func keyboardWillChange(notification: Notification) {
         //print("Keyboard will show: \(notification.name.rawValue)")
+        guard let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            return
+        }
         
-        if(infoTextField.isFirstResponder) {
-            guard let keyboardRect = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
-                return
-            }
-            
+        if(infoTextField.isFirstResponder || timesADayTextField.isFirstResponder || everyXWeeksTextField.isFirstResponder) {
+
             if notification.name == Notification.Name.UIKeyboardWillShow || notification.name == Notification.Name.UIKeyboardWillChangeFrame {
                 view.frame.origin.y = -keyboardRect.height
-            } else {
-                view.frame.origin.y = 0
             }
+        }
+        
+        if(notification.name == Notification.Name.UIKeyboardWillHide)
+        {
+            view.frame.origin.y = 0
         }
         
     }
 
     //MARK:- Button actions
-    
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -103,10 +110,68 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBAction func createButtonPressed(_ sender: UIButton) {
         newTask.title = titleTextField.text!
         newTask.info = infoTextField.text!
+        newTask.timesADay = Int(timesADayTextField.text!)!
+        newTask.everyXWeeks = Int(everyXWeeksTextField.text!)!
+        
+        if(everyDayButton.isSelected) {
+            for day in newTask.weekDays.keys {
+                newTask.weekDays.updateValue(true, forKey: day)
+            }
+        } else {
+            for button in weekButtons {
+                if(button.isSelected) {
+                    newTask.weekDays.updateValue(true, forKey: button.tag)
+                }
+            }
+        }
+        
         
         delegate?.taskReceived(task: newTask)
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func weekButtonPressed(_ sender: UIButton) {
+        var changeSelected : Bool = true
+        
+        if(sender.isSelected) {
+            sender.isSelected = false
+            if(sender == everyDayButton) {
+                weekButtons[0].isSelected = true
+            }
+            else {
+                for button in weekButtons {
+                    changeSelected = changeSelected && !button.isSelected
+                }
+                if(changeSelected) {
+                    everyDayButton.isSelected = true
+                }
+            }
+        }
+        else {
+            sender.isSelected = true
+            if(sender == everyDayButton) {
+                for button in weekButtons {
+                    button.isSelected = false
+                }
+            } else {
+                for button in weekButtons {
+                    changeSelected = changeSelected && button.isSelected
+                }
+                
+                if(changeSelected) {
+                    everyDayButton.isSelected = true
+                    for button in weekButtons {
+                        button.isSelected = false
+                    }
+                }
+                else {
+                    everyDayButton.isSelected = false
+                }
+            }
+        }
+    }
+    
+    
     
     //MARK:- TextField delegate methods
     
@@ -137,6 +202,13 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         
         textField.inputView = self.myPickerView
         
+        if textField == timesADayTextField {
+            self.myPickerView.selectRow(Int(timesADayTextField.text!)! - 1, inComponent: 0, animated: true)
+        }
+        else if textField == everyXWeeksTextField {
+            self.myPickerView.selectRow(Int(everyXWeeksTextField.text!)! - 1, inComponent: 0, animated: true)
+        }
+        
         // ToolBar
         let toolBar = UIToolbar()
         toolBar.barStyle = .default
@@ -166,7 +238,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if ( timesADayTextField.isFirstResponder) {
-            return 31
+            return 24
         }
         else if ( everyXWeeksTextField.isFirstResponder) {
             return 10

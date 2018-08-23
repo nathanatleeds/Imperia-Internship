@@ -20,6 +20,28 @@ class Task {
     var everyXWeeks : Int = 1
     var everyXDays : Int = 1
     
+    
+    // Sun = 1
+    var weekDays = [1: false,
+                    2: false,
+                    3: false,
+                    4: false,
+                    5: false,
+                    6: false,
+                    7: false]
+    
+    
+//        var weekDays = ["Mon": false,
+//                        "Tue": false,
+//                        "Wed": false,
+//                        "Thu": false,
+//                        "Fri": false,
+//                        "Sat": false,
+//                        "Sun": false]
+
+
+    
+    
     func completeTask() {
         started = true
         completed = true
