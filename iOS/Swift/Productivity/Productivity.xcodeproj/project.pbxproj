@@ -20,6 +20,7 @@
 		C132E1D3212D56A3007106EB /* OptionsPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */; };
 		C132E1D6212D5BDC007106EB /* OptionsPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1D4212D5BDC007106EB /* OptionsPopup.storyboard */; };
 		C132E1D8212D874B007106EB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1D7212D874B007106EB /* EditViewController.swift */; };
+		C132E1DB212E8324007106EB /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1D9212E8324007106EB /* Create.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsPopupViewController.swift; sourceTree = "<group>"; };
 		C132E1D5212D5BDC007106EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Productivity/View/Base.lproj/OptionsPopup.storyboard; sourceTree = "<group>"; };
 		C132E1D7212D874B007106EB /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
+		C132E1DA212E8324007106EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Productivity/View/Base.lproj/Create.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				C132E1AF212BE45D007106EB /* Main.storyboard */,
+				C132E1D9212E8324007106EB /* Create.storyboard */,
 				C132E1D4212D5BDC007106EB /* OptionsPopup.storyboard */,
 				C132E1B4212BE45F007106EB /* LaunchScreen.storyboard */,
 				C132E1C1212BE723007106EB /* Task Cell */,
@@ -182,6 +185,7 @@
 				C132E1C0212BE70C007106EB /* TaskCell.xib in Resources */,
 				C132E1B6212BE45F007106EB /* LaunchScreen.storyboard in Resources */,
 				C132E1B3212BE45F007106EB /* Assets.xcassets in Resources */,
+				C132E1DB212E8324007106EB /* Create.storyboard in Resources */,
 				C132E1B1212BE45D007106EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,6 +233,14 @@
 				C132E1D5212D5BDC007106EB /* Base */,
 			);
 			name = OptionsPopup.storyboard;
+			sourceTree = "<group>";
+		};
+		C132E1D9212E8324007106EB /* Create.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C132E1DA212E8324007106EB /* Base */,
+			);
+			name = Create.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

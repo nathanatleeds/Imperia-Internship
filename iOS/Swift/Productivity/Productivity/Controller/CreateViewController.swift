@@ -13,19 +13,27 @@ protocol CreateTaskDelegate {
 }
 
 
-class CreateViewController: UIViewController, UITextFieldDelegate {
+class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
     var newTask : Task = Task()
     var delegate : CreateTaskDelegate?
-    
-    @IBOutlet weak var scrollView: UIScrollView!
+    var myPickerView : UIPickerView = UIPickerView()
+
+
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var infoTextField: UITextField!
-
+    @IBOutlet weak var timesADayTextField: UITextField!
+    @IBOutlet weak var everyXWeeksTextField: UITextField!
+    
+    
+    @IBOutlet var weekButtons: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.delegate = self
         infoTextField.delegate = self
+        timesADayTextField.delegate = self
+        everyXWeeksTextField.delegate = self
         
         // Hide keyboard when tapping outside of text field
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -39,6 +47,14 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
         
         view.addGestureRecognizer(tap)
+        
+        //init pickerview
+        
+        self.myPickerView = UIPickerView(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+        self.myPickerView.delegate = self
+        self.myPickerView.dataSource = self
+        self.myPickerView.backgroundColor = UIColor.white
+        self.myPickerView.isUserInteractionEnabled = true
         
     }
     
@@ -94,6 +110,14 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
     
     //MARK:- TextField delegate methods
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        if(textField == timesADayTextField || textField == everyXWeeksTextField) {
+
+                pickUp(textField)
+        }
+
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         view.endEditing(true)
@@ -106,4 +130,97 @@ class CreateViewController: UIViewController, UITextFieldDelegate {
         return false
     }
     
+    
+    //MARK:- PickerView delegate methods
+    
+    func pickUp(_ textField : UITextField){
+        
+        textField.inputView = self.myPickerView
+        
+        // ToolBar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor(red: 134.0/255.0, green: 146.0/255.0, blue: 169.0/255.0, alpha: 1.0)
+        toolBar.sizeToFit()
+        
+        // Adding Button ToolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneClick))
+        
+        toolBar.setItems([ doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        textField.inputAccessoryView = toolBar
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    @objc func doneClick() {
+        if(timesADayTextField.isFirstResponder) {
+             timesADayTextField.resignFirstResponder()
+        } else if(everyXWeeksTextField.isFirstResponder) {
+            everyXWeeksTextField.resignFirstResponder()
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if ( timesADayTextField.isFirstResponder) {
+            return 31
+        }
+        else if ( everyXWeeksTextField.isFirstResponder) {
+            return 10
+        }
+        
+        return 10
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+            return "\(row + 1)"
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if ( timesADayTextField.isFirstResponder) {
+            timesADayTextField.text = "\(row + 1)"
+        }
+        else {
+            everyXWeeksTextField.text = "\(row + 1)"
+        }
+
+    }
+    
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//
+//        if ( hospitalTextField.isFirstResponder) {
+//            return pickerHospitalsData.count
+//        } else {
+//            return pickerData.count
+//        }
+//    }
+    
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        if ( hospitalTextField.isFirstResponder) {
+//
+//            return (pickerHospitalsData[row]["name"] as! String)
+//        } else {
+//            return pickerData[row]
+//        }
+//    }
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        if ( _hiddenTextField.isFirstResponder) {
+//            //_chiefComplaintButton.setTitle(pickerData[row], for: .normal)
+//        } else if ( anticolagulant.isFirstResponder) {
+//            anticolagulant.text = pickerData[row]
+//        } else if (hospitalTextField.isFirstResponder) {
+//            hospitalTextField.text = (pickerHospitalsData[row]["name"] as! String)
+//            hospitalId = pickerHospitalsData[row]["id"] as! Int
+//        } else if ( lamsScale.isFirstResponder) {
+//            lamsScale.text = pickerData[row]
+//        } else if ( cincinatiScaleTextField.isFirstResponder) {
+//            cincinatiScaleTextField.text = pickerData[row]
+//        }
+    
 }
+    
+

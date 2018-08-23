@@ -16,6 +16,9 @@ class Task {
     var started : Bool = false
     var completed : Bool = false
     var taskExp : Int = 100
+    var timesADay : Int = 1
+    var everyXWeeks : Int = 1
+    var everyXDays : Int = 1
     
     func completeTask() {
         started = true
