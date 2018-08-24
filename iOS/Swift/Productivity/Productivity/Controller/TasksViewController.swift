@@ -19,9 +19,12 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var expLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
+    let defaults = UserDefaults.standard
+    
     
     var sampleUser : User = User()
     var sampleData : [Task] = [Task]()
+    var savedData : [[String : Any]] = [[String : Any]]()
     var selectedIndex : Int = 0
     
     var selectedTask : Task = Task()
@@ -29,17 +32,77 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UIApplication.shared.applicationIconBadgeNumber = 0
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+       // UIApplication.shared.applicationIconBadgeNumber = 0
         
         // Do any additional setup after loading the view, typically from a nib.
         taskTableView.delegate = self
         taskTableView.dataSource = self
         
         taskTableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "taskCell")
+        //testData()
+        
+        initDefaults()
         updateUserLabels()
-        testData()
         configureTableView()
         notification()
+    }
+    
+    func initDefaults() {
+          print("-------------")
+        if(defaults.object(forKey: "tasks") == nil) {
+            var task = Task()
+            task.title = "Log"
+            task.info = "Keep it up!"
+            savedData.append(task.toDictionary())
+            
+            print("wtf")
+            print(savedData)
+            
+            defaults.set(savedData, forKey: "tasks")
+          
+            //print("wtfffff")
+        }
+            savedData = defaults.object(forKey: "tasks") as! [[String : Any]]
+        
+        
+            var someTask = Task()
+            
+            for dict in savedData {
+                print("Dict.......")
+                print(dict)
+                
+                someTask.title = dict["title"] as! String
+                someTask.info = dict["info"] as! String
+                someTask.notes = dict["notes"] as! String
+                someTask.started = dict["started"] as! Bool
+                someTask.completed = dict["completed"] as! Bool
+                someTask.taskExp = dict["taskExp"] as! Int
+                someTask.timesADay = dict["timesADay"] as! Int
+                someTask.everyXWeeks = dict["everyXWeeks"] as! Int
+                someTask.everyXDays = dict["everyXDays"] as! Int
+               // someTask.weekDays = dict["weekDays"] as! [Int : Bool]
+                
+                sampleData.append(someTask)
+                
+                
+                // var taskExp : Int = 100
+//                var title : String = ""
+//                var info : String = ""
+//                var notes : String = ""
+//                var started : Bool = false
+//                var completed : Bool = false
+//                var taskExp : Int = 100
+//                var timesADay : Int = 1
+//                var everyXWeeks : Int = 1
+//                var everyXDays : Int = 1
+            
+        }
+        print("sample.......")
+        print(sampleData)
+        defaults.synchronize()
     }
     
     func notification() {
@@ -52,6 +115,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         content.subtitle = "Lunch"
         content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
         content.sound = UNNotificationSound.default()
+        content.badge = 1
         
         
         //notification trigger can be based on time, calendar or location
@@ -67,8 +131,6 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 print("error \(String(describing: error))")
             }
         }
-        
-
     }
     
     
@@ -84,6 +146,8 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     //MARK:- Test
     func testData() {
+       
+        
         let firstTask : Task = Task()
         firstTask.title = "Make bed"
         firstTask.info = "Morning 08:00"
@@ -105,7 +169,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         fifthTask.title = "Test"
         fifthTask.info = "Evening"
         
-        sampleData = [firstTask, secondTask, thirdTask, fourthTask, fifthTask]
+        sampleData =  [firstTask, secondTask, thirdTask, fourthTask, fifthTask]
     }
     
     
@@ -286,6 +350,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
     }
     
+    
     //MARK:- Prepare for segue
     override func prepare(for segue: UIStoryboardSegue,  sender: Any?) {
         if segue.identifier == "showCreate" {
@@ -344,8 +409,22 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         expLabel.text = "\(sampleUser.currentExp) / \(sampleUser.neededExp)"
         progressView.progress = Float(sampleUser.currentExp) / Float(sampleUser.neededExp)
         
+        updateDefaults()
     }
     
-    
+    func updateDefaults() {
+        savedData = [[String : Any]]()
+        print("sampleData............")
+        print(sampleData)
+        for data in sampleData {
+            print(data)
+            savedData.append(data.toDictionary())
+            print("savedData............")
+            print(savedData)
+        }
+        
+        defaults.set(savedData, forKey: "tasks")
+        defaults.synchronize()
+    }
 }
 

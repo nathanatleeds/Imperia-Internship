@@ -174,27 +174,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     
     
     //MARK:- TextField delegate methods
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        
-        if(textField == timesADayTextField || textField == everyXWeeksTextField) {
-
-                pickUp(textField)
-        }
-
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
-    
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.view.endEditing(true)
-        return false
-    }
-    
+ 
     
     //MARK:- PickerView delegate methods
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class User {
+class User : NSObject {
     
     var level : Int = 1
     var neededExp : Int = 100
