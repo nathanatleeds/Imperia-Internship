@@ -15,6 +15,8 @@ class Task : NSObject {
     var info : String = ""
     var notes : String = ""
     var started : Bool = false
+    var skipped : Bool = false
+    var timesCompleted : Int = 0
     var completed : Bool = false
     var taskExp : Int = 100
     var timesADay : Int = 1
@@ -78,6 +80,7 @@ class Task : NSObject {
     
     func skipTask() {
         started = true
+        skipped = true
         completed = false
     }
     
@@ -93,11 +96,13 @@ class Task : NSObject {
                     "info" : info,
                     "notes" : notes,
                     "started" : started,
+                    "skipped" : skipped,
                     "completed" : completed,
                     "taskExp" : taskExp,
                     "timesADay" : timesADay,
                     "everyXWeeks" : everyXWeeks,
                     "weekDays" : weekDays,
+                    "timesCompleted" : timesCompleted,
                     "everyXDays" : everyXDays] as [String : Any]
         
         return dict

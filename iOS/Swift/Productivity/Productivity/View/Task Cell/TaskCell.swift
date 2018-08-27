@@ -13,7 +13,8 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
-    
+    @IBOutlet weak var timesDoneLabel: UILabel!
+    @IBOutlet weak var progressBar: UIProgressView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

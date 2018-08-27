@@ -16,8 +16,32 @@ class User : NSObject {
     var coins : Int = 0
 
     
+    func toDictionary() -> [String : Any] {
+        let dict = [
+            "level" : level,
+            "neededExp" : neededExp,
+            "currentExp" : currentExp,
+            "coins" : coins] as [String : Any]
+        
+        return dict
+    }
+    
     func completeTask(completedTask: Task) {
-        currentExp += completedTask.taskExp
+        completedTask.timesCompleted += 1
+        
+        if(completedTask.timesCompleted == completedTask.timesADay) {
+            completedTask.completeTask()
+        }
+        if(!completedTask.started) {
+            completedTask.started = true
+            currentExp += completedTask.taskExp / completedTask.timesADay + completedTask.taskExp % completedTask.timesADay
+        }
+    
+        else {
+            currentExp += completedTask.taskExp / completedTask.timesADay
+        }
+        
+
         
         if(currentExp >= neededExp) {
             levelUp()
@@ -32,7 +56,13 @@ class User : NSObject {
             if(currentExp < 0) {
                 levelDown()
             }
+        } else if(undoneTask.started) {
+            currentExp -= undoneTask.taskExp / undoneTask.timesADay + undoneTask.taskExp % undoneTask.timesADay
+            currentExp -= undoneTask.taskExp / undoneTask.timesADay * (undoneTask.timesCompleted - 1)
         }
+        undoneTask.started = false
+        undoneTask.skipped = false
+        undoneTask.timesCompleted = 0
     }
     
     func levelUp() {

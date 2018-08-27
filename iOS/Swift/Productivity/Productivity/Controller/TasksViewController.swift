@@ -80,8 +80,10 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 someTask.info = dict["info"] as! String
                 someTask.notes = dict["notes"] as! String
                 someTask.started = dict["started"] as! Bool
+                someTask.skipped = dict["skipped"] as! Bool
                 someTask.completed = dict["completed"] as! Bool
                 someTask.taskExp = dict["taskExp"] as! Int
+                someTask.timesCompleted = dict["timesCompleted"] as! Int
                 someTask.timesADay = dict["timesADay"] as! Int
                 someTask.everyXWeeks = dict["everyXWeeks"] as! Int
                 someTask.everyXDays = dict["everyXDays"] as! Int
@@ -104,6 +106,25 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         print("sample.......")
         print(sampleData)
+        
+        if(defaults.object(forKey: "user") == nil) {
+            defaults.set(sampleUser.toDictionary(), forKey: "user")
+        } else {
+            
+            let dict : [String : Any] = defaults.object(forKey: "user") as! [String : Any]
+            
+            sampleUser.level = dict["level"] as! Int
+            sampleUser.neededExp = dict["neededExp"] as! Int
+            sampleUser.currentExp = dict["currentExp"] as! Int
+            sampleUser.coins = dict["coins"] as! Int
+            
+//            "level" : level,
+//            "neededExp" : neededExp,
+//            "currentExp" : currentExp,
+//            "coins" : coins] as [String : Any]
+        }
+        
+        
         defaults.synchronize()
     }
     
@@ -187,17 +208,20 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.iconImageView.image = UIImage(named: "up.png")
         cell.titleLabel.text = sampleData[indexPath.row].title
         cell.infoLabel.text = sampleData[indexPath.row].info
+        cell.timesDoneLabel.text = "\(sampleData[indexPath.row].timesCompleted) / \(sampleData[indexPath.row].timesADay)"
+        cell.progressBar.progress = Float(sampleData[indexPath.row].timesCompleted) / Float((sampleData[indexPath.row].timesADay))
+        
+        //progressView.progress = Float(sampleUser.currentExp) / Float(sampleUser.neededExp)
         
         if (sampleData[indexPath.row].completed)
         {
             cell.contentView.backgroundColor = UIColor(red: 0.7608, green: 0.9765, blue: 0.7608, alpha: 1.0)
         }
-        else if (!sampleData[indexPath.row].started){
-            cell.contentView.backgroundColor = UIColor.white
-        } else {
+         else if (sampleData[indexPath.row].skipped){
             cell.contentView.backgroundColor = UIColor(red: 0.9098, green: 0.9098, blue: 0.9098, alpha: 1.0)
+        } else {
+            cell.contentView.backgroundColor = UIColor.white
         }
-        
         return cell;
     }
     
@@ -273,11 +297,11 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
-        if(!sampleData[indexPath.row].started)
+        if(!sampleData[indexPath.row].completed && !sampleData[indexPath.row].skipped)
         {
             let closeAction = UIContextualAction(style: .normal, title:  "Done", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                 print("Done!")
-                self.sampleData[indexPath.row].completeTask()
+                //self.sampleData[indexPath.row].completeTask()
                 self.taskTableView.reloadData()
                 self.sampleUser.completeTask(completedTask: self.sampleData[indexPath.row])
                 self.updateUserLabels()
@@ -298,7 +322,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
     {
-        if(!sampleData[indexPath.row].started) {
+        if(!sampleData[indexPath.row].completed && !sampleData[indexPath.row].skipped) {
             let modifyAction = UIContextualAction(style: .normal, title:  "Skip", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
                 print("Skipped action ...")
                 self.sampleData[indexPath.row].skipTask()
@@ -437,6 +461,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         defaults.set(savedData, forKey: "tasks")
+        defaults.set(sampleUser.toDictionary(), forKey: "user")
         defaults.synchronize()
     }
 }

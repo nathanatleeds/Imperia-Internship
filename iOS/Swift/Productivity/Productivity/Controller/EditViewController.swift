@@ -77,7 +77,7 @@ class EditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         var selectEveryDay = true
     
         for key in task.weekDays.keys {
-            selectEveryDay = task.weekDays[key] == 0 && selectEveryDay
+            selectEveryDay = task.weekDays[key] == 1 && selectEveryDay
         }
     
         if(selectEveryDay) {
