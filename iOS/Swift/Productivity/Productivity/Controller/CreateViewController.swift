@@ -115,16 +115,15 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         
         if(everyDayButton.isSelected) {
             for day in newTask.weekDays.keys {
-                newTask.weekDays.updateValue(true, forKey: day)
+                newTask.weekDays.updateValue(1, forKey: day)
             }
         } else {
             for button in weekButtons {
                 if(button.isSelected) {
-                    newTask.weekDays.updateValue(true, forKey: button.tag)
+                    newTask.weekDays.updateValue(1, forKey: "\(button.tag)")
                 }
             }
         }
-        
         
         delegate?.taskReceived(task: newTask)
         self.navigationController?.popViewController(animated: true)
@@ -274,5 +273,5 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
 //        }
     
 }
-    
+
 

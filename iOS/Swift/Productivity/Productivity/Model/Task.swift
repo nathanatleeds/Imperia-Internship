@@ -21,6 +21,22 @@ class Task : NSObject {
     var everyXWeeks : Int = 1
     var everyXDays : Int = 1
     
+//    var weekDays = [1: false,
+//                    2: false,
+//                    3: false,
+//                    4: false,
+//                    5: false,
+//                    6: false,
+//                    7: false]
+    
+//        var weekDays = [1: 1,
+//                        2: 0,
+//                        3: 0,
+//                        4: 0,
+//                        5: 0,
+//                        6: 0,
+//                        7: 0]
+//
     
     // if index = 0, last item = 0
 //    override init() {
@@ -36,14 +52,24 @@ class Task : NSObject {
 //        defaults.synchronize()
 //    }
 //
-    // Sun = 1
-    var weekDays = [1: false,
-                    2: false,
-                    3: false,
-                    4: false,
-                    5: false,
-                    6: false,
-                    7: false]
+     //Sun = 1
+    var weekDays = ["1": 0,
+                    "2": 0,
+                    "3": 0,
+                    "4": 0,
+                    "5": 0,
+                    "6": 0,
+                    "7": 0]
+    
+//        var weekDays = ["1": false,
+//                        "2": false,
+//                        "3": false,
+//                        "4": false,
+//                        "5": false,
+//                        "6": false,
+//                        "7": false]
+    
+
     
     func completeTask() {
         started = true
@@ -71,14 +97,14 @@ class Task : NSObject {
                     "taskExp" : taskExp,
                     "timesADay" : timesADay,
                     "everyXWeeks" : everyXWeeks,
-                   // "weekDays" : weekDays,
+                    "weekDays" : weekDays,
                     "everyXDays" : everyXDays] as [String : Any]
         
         return dict
     }
     
-    
- //   //MARK:- NSCoding
+//
+//    //MARK:- NSCoding
 //    required convenience init?(coder decoder: NSCoder) {
 //        guard let title = decoder.decodeObject(forKey: "title") as? String,
 //            let info = decoder.decodeObject(forKey: "info") as? String,
@@ -88,22 +114,25 @@ class Task : NSObject {
 //            let taskExp = decoder.decodeObject(forKey: "taskExp") as? Int,
 //            let timesADay = decoder.decodeObject(forKey: "timesADay") as? Int,
 //            let everyXWeeks = decoder.decodeObject(forKey: "everyXWeeks") as? Int,
-//            let everyXDays = decoder.decodeObject(forKey: "everyXDays") as? Int
+//            let everyXDays = decoder.decodeObject(forKey: "everyXDays") as? Int,
+//            let weekDays = decoder.decodeObject(forKey: "weekDays") as? [Int : Bool]
 //            else { return nil }
 //
-//        self.init()
+//        
 //    }
 //
-//    func encode(with aCoder: NSCoder) {
-//        <#code#>
-//    }
 //
 //
 //    func encodeWithCoder(coder: NSCoder) {
 //        coder.encode(self.title, forKey: "title")
-//        coder.encodeObject(self.author, forKey: "author")
-//        coder.encodeInt(Int32(self.pageCount), forKey: "pageCount")
-//        coder.encodeObject(self.categories, forKey: "categories")
-//        coder.encodeBool(self.available, forKey: "available")
+//        coder.encode(self.info, forKey: "info")
+//        coder.encode(self.notes, forKey: "notes")
+//        coder.encode(self.started, forKey: "started")
+//        coder.encode(self.completed, forKey: "completed")
+//        coder.encode(self.taskExp, forKey: "taskExp")
+//        coder.encode(self.timesADay, forKey: "timesADay")
+//        coder.encode(self.everyXWeeks, forKey: "everyXWeeks")
+//        coder.encode(self.everyXDays, forKey: "everyXDays")
+//        coder.encode(self.weekDays, forKey: "weekDays")
 //    }
 }

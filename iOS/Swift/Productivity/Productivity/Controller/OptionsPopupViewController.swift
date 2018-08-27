@@ -13,7 +13,8 @@ protocol OptionsPopupDelegate {
 }
 
 
-class OptionsPopupViewController: UIViewController, EditTaskDelegate {
+class OptionsPopupViewController: UIViewController, EditTaskDelegate
+{
     
     var task : Task = Task()
     var delegate : OptionsPopupDelegate?

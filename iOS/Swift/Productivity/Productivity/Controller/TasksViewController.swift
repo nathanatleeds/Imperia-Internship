@@ -10,7 +10,8 @@ import UIKit
 import SwiftDate
 import UserNotifications
 
-class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateTaskDelegate, OptionsPopupDelegate  {
+class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CreateTaskDelegate, OptionsPopupDelegate
+{
     
     @IBOutlet weak var taskTableView: UITableView!
     @IBOutlet weak var moveButton: UIButton!
@@ -32,9 +33,9 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let domain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
+//        let domain = Bundle.main.bundleIdentifier!
+//        UserDefaults.standard.removePersistentDomain(forName: domain)
+//        UserDefaults.standard.synchronize()
        // UIApplication.shared.applicationIconBadgeNumber = 0
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -68,9 +69,10 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             savedData = defaults.object(forKey: "tasks") as! [[String : Any]]
         
         
-            var someTask = Task()
+        
             
             for dict in savedData {
+                var someTask = Task()
                 print("Dict.......")
                 print(dict)
                 
@@ -83,7 +85,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 someTask.timesADay = dict["timesADay"] as! Int
                 someTask.everyXWeeks = dict["everyXWeeks"] as! Int
                 someTask.everyXDays = dict["everyXDays"] as! Int
-               // someTask.weekDays = dict["weekDays"] as! [Int : Bool]
+                someTask.weekDays = dict["weekDays"] as! [String : Int]
                 
                 sampleData.append(someTask)
                 
@@ -227,6 +229,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // delete from source
         sampleData.remove(at: sourceIndexPath.row)
 
+
         
         var region = Region.local
         var date = DateInRegion(Date(), region: region)
@@ -246,7 +249,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
         // move to destination
         sampleData.insert(productToMove, at: destinationIndexPath.row)
-
+        updateDefaults()
 //        for task in sampleData {
 //            print(task.title)
 //        }
@@ -325,13 +328,22 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         else {
             let alert = UIAlertController(title: "Not enough coins", message: "You need \(500 - sampleUser.coins) more coins to continue.", preferredStyle: .alert)
             
-            alert.addAction(UIAlertAction(title: "Buy", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Watch video", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Buy", style: .default, handler: {
+                (alert: UIAlertAction!) in
+                self.sampleUser.coins += 500
+                self.updateUserLabels()
+            }))
+            alert.addAction(UIAlertAction(title: "Watch video", style: .default, handler:{
+                (alert: UIAlertAction!) in
+                self.sampleUser.coins += 500
+                self.updateUserLabels()
+            }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             
             self.present(alert, animated: true)
         }
     }
+    
     
     @IBAction func statsButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "showStats", sender: self)
@@ -369,6 +381,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         sampleUser.coins -= 500
         sampleData.append(task)
         updateUserLabels()
+        updateDefaults()
         self.taskTableView.reloadData()
     }
     
@@ -399,7 +412,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print ("Default")
         }
 
-      
+      updateDefaults()
     }
     
     //MARK:- Labels

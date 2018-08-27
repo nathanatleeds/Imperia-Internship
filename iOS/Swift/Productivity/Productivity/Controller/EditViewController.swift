@@ -75,22 +75,22 @@ class EditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDel
     
     func selectButtons() {
         var selectEveryDay = true
-        
+    
         for key in task.weekDays.keys {
-            selectEveryDay = task.weekDays[key]! && selectEveryDay
+            selectEveryDay = task.weekDays[key] == 0 && selectEveryDay
         }
-        
+    
         if(selectEveryDay) {
             everyDayButton.isSelected = true
         }
         else {
             for key in task.weekDays.keys {
-                
-                if(task.weekDays[key]!) {
-                    let button : UIButton = view.viewWithTag(key) as! UIButton
+    
+                if(task.weekDays[key] == 1) {
+                    let button : UIButton = view.viewWithTag(Int(key)!) as! UIButton
                      button.isSelected = true
                 }
-               
+    
             }
         }
     }
@@ -121,12 +121,12 @@ class EditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDel
         
         if(everyDayButton.isSelected) {
             for day in task.weekDays.keys {
-                task.weekDays.updateValue(true, forKey: day)
+                task.weekDays.updateValue(1, forKey: day)
             }
         } else {
             for button in weekButtons {
                 if(button.isSelected) {
-                    task.weekDays.updateValue(true, forKey: button.tag)
+                    task.weekDays.updateValue(1, forKey: "\(button.tag)")
                 }
             }
         }
@@ -305,5 +305,7 @@ func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent c
     }
     
 }
+
 }
+
 
