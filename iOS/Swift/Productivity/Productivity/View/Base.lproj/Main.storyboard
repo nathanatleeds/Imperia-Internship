@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGT-R8-EaJ">
-                                <rect key="frame" x="0.0" y="196" width="375" height="368"/>
+                                <rect key="frame" x="0.0" y="202" width="375" height="382"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -45,34 +45,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coin" translatesAutoresizingMaskIntoConstraints="NO" id="nho-hN-jbS">
+                                <rect key="frame" x="269" y="101" width="39" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2BJ-Ee-iCn">
-                                <rect key="frame" x="23" y="73" width="66" height="28"/>
+                                <rect key="frame" x="195" y="103" width="77" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.7901300604" green="0.98829740290000001" blue="0.76248216719999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Stats"/>
-                                <connections>
-                                    <action selector="statsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r9F-t1-SGB"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-eU-QBl">
-                                <rect key="frame" x="0.0" y="565" width="375" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.7901300604" green="0.98829740290000001" blue="0.76248216719999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Add Task (500 coins)"/>
-                                <connections>
-                                    <action selector="addTaskPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lN4-22-vev"/>
-                                </connections>
+                                <state key="normal" title="Get More"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Evh-wa-i0Y">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <rect key="frame" x="0.0" y="621" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                <state key="normal" title="Move"/>
-                                <connections>
-                                    <action selector="moveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8t1-BP-zit"/>
-                                </connections>
+                                <state key="normal" title="Show Calender"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E49-8i-Z0J">
                                 <rect key="frame" x="310" y="100" width="89" height="31"/>
@@ -81,15 +74,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coin" translatesAutoresizingMaskIntoConstraints="NO" id="nho-hN-jbS">
-                                <rect key="frame" x="269" y="101" width="39" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wNs-qG-Bno">
+                                <rect key="frame" x="313" y="171" width="46" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <state key="normal" title="Move"/>
+                                <connections>
+                                    <action selector="moveButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rTa-2t-HJ7"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r1B-eU-QBl">
+                                <rect key="frame" x="0.0" y="574" width="375" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.7901300604" green="0.98829740290000001" blue="0.76248216719999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="Add Task (500 coins)"/>
+                                <connections>
+                                    <action selector="addTaskPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lN4-22-vev"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="eYI-X1-mRT">
+                        <barButtonItem key="leftBarButtonItem" title="Stats" id="LWg-aj-aLM">
+                            <connections>
+                                <action selector="statsButtonPressed:" destination="BYZ-38-t0r" id="a2t-I3-Ddt"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="pO2-J9-FVE"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
@@ -97,7 +109,7 @@
                         <outlet property="coinsLabel" destination="E49-8i-Z0J" id="m09-kP-Io5"/>
                         <outlet property="expLabel" destination="OzE-gC-GQw" id="aX0-h2-k7L"/>
                         <outlet property="levelLabel" destination="CGf-cU-06c" id="LW1-Bz-THX"/>
-                        <outlet property="moveButton" destination="Evh-wa-i0Y" id="jAS-dE-7O9"/>
+                        <outlet property="moveButton" destination="wNs-qG-Bno" id="qYI-2G-GsE"/>
                         <outlet property="progressView" destination="bxW-CJ-4Sz" id="NdS-KT-edF"/>
                         <outlet property="taskTableView" destination="RGT-R8-EaJ" id="Wcj-lP-JsG"/>
                         <segue destination="vJg-g6-H1E" kind="show" identifier="showCreate" id="1mV-qY-h4O"/>

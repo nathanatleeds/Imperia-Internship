@@ -48,13 +48,13 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         initDefaults()
         updateUserLabels()
         configureTableView()
-        notification()
+       // notification()
     }
     
     func initDefaults() {
           print("-------------")
         if(defaults.object(forKey: "tasks") == nil) {
-            var task = Task()
+            let task = Task()
             task.title = "Log"
             task.info = "Keep it up!"
             savedData.append(task.toDictionary())
@@ -67,14 +67,13 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             //print("wtfffff")
         }
             savedData = defaults.object(forKey: "tasks") as! [[String : Any]]
-        
-        
-        
             
             for dict in savedData {
-                var someTask = Task()
+                let someTask = Task()
                 print("Dict.......")
                 print(dict)
+                
+                // Add guard/let
                 
                 someTask.title = dict["title"] as! String
                 someTask.info = dict["info"] as! String
@@ -128,33 +127,33 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         defaults.synchronize()
     }
     
-    func notification() {
-        //get the notification center
-        let center =  UNUserNotificationCenter.current()
-        
-        //create the content for the notification
-        let content = UNMutableNotificationContent()
-        content.title = " Jurassic Park"
-        content.subtitle = "Lunch"
-        content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
-        content.sound = UNNotificationSound.default()
-        content.badge = 1
-        
-        
-        //notification trigger can be based on time, calendar or location
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:5.0, repeats: false)
-        
-        //create request to display
-        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
-        
-        
-        //add request to notification center
-        center.add(request) { (error) in
-            if error != nil {
-                print("error \(String(describing: error))")
-            }
-        }
-    }
+//    func notification() {
+//        //get the notification center
+//        let center =  UNUserNotificationCenter.current()
+//        
+//        //create the content for the notification
+//        let content = UNMutableNotificationContent()
+//        content.title = " Jurassic Park"
+//        content.subtitle = "Lunch"
+//        content.body = "Its lunch time at the park, please join us for a dinosaur feeding"
+//        content.sound = UNNotificationSound.default()
+//        content.badge = 1
+//        
+//        
+//        //notification trigger can be based on time, calendar or location
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval:5.0, repeats: false)
+//        
+//        //create request to display
+//        let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
+//        
+//        
+//        //add request to notification center
+//        center.add(request) { (error) in
+//            if error != nil {
+//                print("error \(String(describing: error))")
+//            }
+//        }
+//    }
     
     
     override func didReceiveMemoryWarning() {
@@ -254,16 +253,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         sampleData.remove(at: sourceIndexPath.row)
 
 
-        
-        var region = Region.local
-        var date = DateInRegion(Date(), region: region)
-        print(region)
-        print(date.compare(.isToday))
-        print(date.weekday)
-        
-        
-        print(date.minute)
-        print(date.weekdayName(.short))
+
     
         
 //        for task in sampleData {
@@ -369,7 +359,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    @IBAction func statsButtonPressed(_ sender: UIButton) {
+    @IBAction func statsButtonPressed(_ sender: Any) {
         self.performSegue(withIdentifier: "showStats", sender: self)
     }
     

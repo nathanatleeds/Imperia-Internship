@@ -22,6 +22,10 @@
 		C132E1D6212D5BDC007106EB /* OptionsPopup.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1D4212D5BDC007106EB /* OptionsPopup.storyboard */; };
 		C132E1D8212D874B007106EB /* EditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1D7212D874B007106EB /* EditViewController.swift */; };
 		C132E1DB212E8324007106EB /* Create.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1D9212E8324007106EB /* Create.storyboard */; };
+		C132E1DD21342FFD007106EB /* Streak.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1DC21342FFD007106EB /* Streak.swift */; };
+		C132E1DF213432D8007106EB /* BigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1DE213432D8007106EB /* BigTask.swift */; };
+		C132E1E1213432F8007106EB /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E0213432F8007106EB /* SubTask.swift */; };
+		C132E1E321343411007106EB /* ToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E221343411007106EB /* ToDoTask.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +47,10 @@
 		C132E1D5212D5BDC007106EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Productivity/View/Base.lproj/OptionsPopup.storyboard; sourceTree = "<group>"; };
 		C132E1D7212D874B007106EB /* EditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewController.swift; sourceTree = "<group>"; };
 		C132E1DA212E8324007106EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Productivity/View/Base.lproj/Create.storyboard; sourceTree = "<group>"; };
+		C132E1DC21342FFD007106EB /* Streak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Streak.swift; sourceTree = "<group>"; };
+		C132E1DE213432D8007106EB /* BigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTask.swift; sourceTree = "<group>"; };
+		C132E1E0213432F8007106EB /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
+		C132E1E221343411007106EB /* ToDoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTask.swift; sourceTree = "<group>"; };
 		FA3B0A80117585FA6AAA8B1B /* Pods_Productivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Productivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -135,6 +143,10 @@
 			children = (
 				C132E1C8212C02DD007106EB /* Task.swift */,
 				C132E1CE212D2C5D007106EB /* User.swift */,
+				C132E1DC21342FFD007106EB /* Streak.swift */,
+				C132E1DE213432D8007106EB /* BigTask.swift */,
+				C132E1E0213432F8007106EB /* SubTask.swift */,
+				C132E1E221343411007106EB /* ToDoTask.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -263,13 +275,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				C132E1D8212D874B007106EB /* EditViewController.swift in Sources */,
+				C132E1DF213432D8007106EB /* BigTask.swift in Sources */,
 				C132E1CD212C3263007106EB /* CreateViewController.swift in Sources */,
 				C132E1C9212C02DD007106EB /* Task.swift in Sources */,
 				C132E1CF212D2C5D007106EB /* User.swift in Sources */,
 				C132E1D3212D56A3007106EB /* OptionsPopupViewController.swift in Sources */,
+				C132E1E321343411007106EB /* ToDoTask.swift in Sources */,
 				C132E1AE212BE45D007106EB /* TasksViewController.swift in Sources */,
 				C132E1BF212BE70C007106EB /* TaskCell.swift in Sources */,
+				C132E1DD21342FFD007106EB /* Streak.swift in Sources */,
 				C132E1AC212BE45D007106EB /* AppDelegate.swift in Sources */,
+				C132E1E1213432F8007106EB /* SubTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
