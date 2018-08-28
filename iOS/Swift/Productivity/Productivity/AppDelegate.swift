@@ -26,6 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             //handle result of request failure
         }
         center.delegate = self
+        //setNotificationsForToday()
+        setCategories()
         return true
     }
 
@@ -41,25 +43,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let region = Region.local
         let date = DateInRegion(Date(), region: region)
-      
-        // Print check
-        print(region)
-        print(date.compare(.isToday))
-        print(date.weekday)
-        print(date.minute)
-        print(date.weekdayName(.short))
+        
+// Print check
+//        print(region)
+//        print(date.compare(.isToday))
+//        print(date.weekday)
+//        print(date.minute)
+//        print(date.weekdayName(.short))
         
         print((date + 1.weeks).weekday)
+        setNotificationsForToday()
         
         for i in 1...7 {
-            print((date + i.days).weekday)
+           //print((date + i.days).weekday)
             //print((date + i.days).weekOfYear)
-            setDailyNotifications(forDate: (date + i.days))
+            setWeeklyNotifications(forDate: (date + i.days))
 
         }
     }
     
-    func setDailyNotifications(forDate date: DateInRegion) {
+    func setWeeklyNotifications(forDate date: DateInRegion) {
         
         let defaults = UserDefaults.standard
         let allTasks = defaults.object(forKey: "tasks") as! [[String : Any]]
@@ -87,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dateComponents.hour = 8
         dateComponents.minute = 0
         var notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        var request = UNNotificationRequest(identifier: "notification1", content: notification, trigger: notificationTrigger)
+        var request = UNNotificationRequest(identifier: "morning_notification", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         // If not opened by then
@@ -95,7 +98,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dateComponents.hour = 13
         //dateComponents.minute = 0
         notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        request = UNNotificationRequest(identifier: "notification2", content: notification, trigger: notificationTrigger)
+        request = UNNotificationRequest(identifier: "afternoon_notification", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         // If not opened by then
@@ -103,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dateComponents.hour = 18
         //dateComponents.minute = 0
         notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        request = UNNotificationRequest(identifier: "notification3", content: notification, trigger: notificationTrigger)
+        request = UNNotificationRequest(identifier: "evening_notification", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
     /*
@@ -138,23 +141,134 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+        //setNotificationsForToday()
+    }
+    
+    func setNotificationsForToday() {
         UIApplication.shared.applicationIconBadgeNumber = 0
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let region = Region.local
+        let date = DateInRegion(Date(), region: region)
+        let defaults = UserDefaults.standard
+        let allTasks = defaults.object(forKey: "tasks") as! [[String : Any]]
+       
+        let endHour = 21
+        
+        for task in allTasks  {
+            let timesADay = task["timesADay"] as! Int
+            let timesCompleted = task["timesCompleted"] as! Int
+            let title = task["title"] as! String
+            let timesLeft = timesADay - timesCompleted
+            
+            if(timesLeft > 0) {
+                let interval : Float = Float(endHour - date.hour) / Float(timesLeft)
+                print("\(interval)")
+                let intervalHours = Int(interval)
+                let intervalMinutes = Int((interval - Float(intervalHours)) * 60)
+                print("\(intervalHours) : \(intervalMinutes)")
+                
+                for i in 1...timesLeft {
+                    
+                    let notification = UNMutableNotificationContent()
+                    notification.body = "\(title) \(timesCompleted) / \(timesADay)"
+                    notification.badge = 1
+                    notification.categoryIdentifier = "task.category"
+                    
+                    
+                    // Notification with the goal count every day at 08:00
+                    var dateComponents = DateComponents()
+                    dateComponents.weekday = date.weekday
+//                    dateComponents.weekOfYear = date.weekOfYear
+//                    dateComponents.year = date.year
+                    dateComponents.hour = date.hour + (i * intervalHours)
+                    
+                    if(date.minute + (i * intervalMinutes) > 60) {
+                        let temp = Float(date.minute + (i * intervalMinutes)) / 60.0
+                        let addHours = Int(temp)
+                        dateComponents.minute = Int((temp - Float(addHours)) * 60)
+                        dateComponents.hour = dateComponents.hour! + addHours
+                        
+                    }   else {
+                        dateComponents.minute = date.minute + (i * intervalMinutes)
+                    }
+                    
+                    print(title + " \(dateComponents.hour!):\(dateComponents.minute!)")
+                    
+                    let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    let request = UNNotificationRequest(identifier: "notification\(i)", content: notification, trigger: notificationTrigger)
+                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+                    
+                }
+                
+                var notification = UNMutableNotificationContent()
+                notification.body = "\(title) \(timesCompleted) / \(timesADay)"
+                notification.badge = 1
+                notification.categoryIdentifier = "task.category"
+
+                var dateComponents = DateComponents()
+                dateComponents.weekday = date.weekday
+                dateComponents.hour = date.hour
+                dateComponents.minute = date.minute + 1
+                let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                var request = UNNotificationRequest(identifier: "not1", content: notification, trigger: notificationTrigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+
+                notification.body = "Test"
+                request = UNNotificationRequest(identifier: "not2", content: notification, trigger: notificationTrigger)
+                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+
+
+            }
+        }
+    
     }
  
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        setNotificationsForToday()
+        setWeeklyNotifications(forDate: DateInRegion(Date(), region: Region.local))
     }
 
     // response
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+     
+        // Add IDs
+        let identifier = response.actionIdentifier
+        let request = response.notification.request
+        if identifier == "complete"{
+            let newContent = request.content.mutableCopy() as! UNMutableNotificationContent
+            newContent.body = request.content.body
+            let newTrigger = UNTimeIntervalNotificationTrigger(timeInterval: 10.0 * 60, repeats: false)
+            
+           
+            let newRequest = UNNotificationRequest(identifier: "snooze", content: newContent, trigger: newTrigger)
+            UNUserNotificationCenter.current().add(newRequest, withCompletionHandler: nil)
+
+            
+        }
+        
         completionHandler()
     }
     
     // notifications in foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound, .badge]) //required to show notification when in foreground
+    }
+    
+    
+    func setCategories(){
+        let completeAction = UNNotificationAction(
+            identifier: "complete",
+            title: "Remind me later",
+            options: [])
+        
+        let taskCategory = UNNotificationCategory(
+            identifier: "task.category",
+            actions: [completeAction],
+            intentIdentifiers: [],
+            options: [])
+        UNUserNotificationCenter.current().setNotificationCategories([taskCategory])
     }
     /*
     func notification() {
@@ -181,7 +295,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         //create request to display
         let request = UNNotificationRequest(identifier: "ContentIdentifier", content: content, trigger: trigger)
-        
         
         //add request to notification center
         center.add(request) { (error) in
