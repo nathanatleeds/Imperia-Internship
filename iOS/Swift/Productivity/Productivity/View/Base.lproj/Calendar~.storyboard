@@ -65,9 +65,6 @@
                                 <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <state key="normal" title="Show Calender"/>
-                                <connections>
-                                    <action selector="showCalendarPRessed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LAm-PB-tsu"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E49-8i-Z0J">
                                 <rect key="frame" x="310" y="100" width="89" height="31"/>
@@ -126,7 +123,7 @@
                         <segue destination="vJg-g6-H1E" kind="show" identifier="showCreate" id="1mV-qY-h4O"/>
                         <segue destination="9gJ-sU-oEE" kind="show" identifier="showStats" id="Re3-VT-Fur"/>
                         <segue destination="B2C-O9-VsL" kind="presentation" identifier="showOptionsPopup" modalPresentationStyle="overCurrentContext" id="4EN-6F-avQ"/>
-                        <segue destination="djH-dY-72U" kind="show" identifier="showCalendar" id="NfP-eR-PQL"/>
+                        <segue destination="4zn-ub-zWW" kind="show" id="NfP-eR-PQL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -168,6 +165,21 @@
             </objects>
             <point key="canvasLocation" x="1014" y="907"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2LY-kw-0D6">
+            <objects>
+                <viewController id="4zn-ub-zWW" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SoO-5b-hRA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="Ufm-cb-aPU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rfy-Tf-vpp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2198" y="878"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="qyx-wR-lFA">
             <objects>
@@ -201,14 +213,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oog-6o-slc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2717.5999999999999" y="117.39130434782609"/>
-        </scene>
-        <!--Calendar-->
-        <scene sceneID="lNs-0k-BBw">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Calendar" id="djH-dY-72U" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="28k-q5-ROI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2198" y="878"/>
         </scene>
     </scenes>
     <resources>

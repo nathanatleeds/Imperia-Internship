@@ -1,16 +1,20 @@
 PODS:
-  - SwiftDate (5.0.5)
+  - JTAppleCalendar (7.1.5)
+  - SwiftDate (5.0.7)
 
 DEPENDENCIES:
+  - JTAppleCalendar
   - SwiftDate
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - JTAppleCalendar
     - SwiftDate
 
 SPEC CHECKSUMS:
-  SwiftDate: 963ed9f6d97e2de396d4ce73174185de04f9cdb6
+  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
+  SwiftDate: f053fb89250c59af5eff777f3b832d2b9dd57403
 
-PODFILE CHECKSUM: 1a3420b8d795f29b76d68da4bc974aab6a99c502
+PODFILE CHECKSUM: 3c784fdfa7179e03d7597b6735584cb1975808de
 
 COCOAPODS: 1.5.3

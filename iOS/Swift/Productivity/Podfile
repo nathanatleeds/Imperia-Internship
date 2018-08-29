@@ -7,4 +7,5 @@ target 'Productivity' do
 
   # Pods for Productivity
     pod 'SwiftDate'
+    pod 'JTAppleCalendar'
 end

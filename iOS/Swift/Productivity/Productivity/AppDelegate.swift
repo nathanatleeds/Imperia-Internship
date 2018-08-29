@@ -54,7 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print((date + 1.weeks).weekday)
         setNotificationsForToday()
         
-        for i in 1...7 {
+        for i in 1...6 {
            //print((date + i.days).weekday)
             //print((date + i.days).weekOfYear)
             setWeeklyNotifications(forDate: (date + i.days))
@@ -89,24 +89,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         dateComponents.weekday = date.weekday
         dateComponents.hour = 8
         dateComponents.minute = 0
-        var notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        var request = UNNotificationRequest(identifier: "morning_notification", content: notification, trigger: notificationTrigger)
+        var notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        var request = UNNotificationRequest(identifier: "morningnotification \(date.weekday)", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         // If not opened by then
         // Notification with the goal count every day at 13:00
         dateComponents.hour = 13
         //dateComponents.minute = 0
-        notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        request = UNNotificationRequest(identifier: "afternoon_notification", content: notification, trigger: notificationTrigger)
+        notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        request = UNNotificationRequest(identifier: "afternoonnotification \(date.weekday)", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
         // If not opened by then
         // Notification with the goal count every day at 18:00
         dateComponents.hour = 18
         //dateComponents.minute = 0
-        notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        request = UNNotificationRequest(identifier: "evening_notification", content: notification, trigger: notificationTrigger)
+        notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        request = UNNotificationRequest(identifier: "eveningnotification \(date.weekday)", content: notification, trigger: notificationTrigger)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
     /*
@@ -194,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                     print(title + " \(dateComponents.hour!):\(dateComponents.minute!)")
                     
-                    let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
                     let request = UNNotificationRequest(identifier: "notification\(i)", content: notification, trigger: notificationTrigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                     

@@ -23,6 +23,10 @@ class Task : NSObject {
     var everyXWeeks : Int = 1
     var everyXDays : Int = 1
     
+    var streak : Int = 0
+    var dueInXDays : Int = 0
+    
+    
 //    var weekDays = [1: false,
 //                    2: false,
 //                    3: false,
@@ -103,7 +107,10 @@ class Task : NSObject {
                     "everyXWeeks" : everyXWeeks,
                     "weekDays" : weekDays,
                     "timesCompleted" : timesCompleted,
-                    "everyXDays" : everyXDays] as [String : Any]
+                    "everyXDays" : everyXDays,
+                    "streak" : streak,
+                    "dueInXDays" : dueInXDays] as [String : Any]
+        
         
         return dict
     }

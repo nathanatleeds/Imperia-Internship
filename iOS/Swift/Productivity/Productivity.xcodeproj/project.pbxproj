@@ -26,6 +26,11 @@
 		C132E1DF213432D8007106EB /* BigTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1DE213432D8007106EB /* BigTask.swift */; };
 		C132E1E1213432F8007106EB /* SubTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E0213432F8007106EB /* SubTask.swift */; };
 		C132E1E321343411007106EB /* ToDoTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E221343411007106EB /* ToDoTask.swift */; };
+		C132E1E621367CCB007106EB /* AllTasksTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E421367CCB007106EB /* AllTasksTableViewCell.swift */; };
+		C132E1E721367CCB007106EB /* AllTasksTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C132E1E521367CCB007106EB /* AllTasksTableViewCell.xib */; };
+		C132E1EA21368D5D007106EB /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1E921368D5D007106EB /* CalendarViewController.swift */; };
+		C132E1EC21368D83007106EB /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C132E1EB21368D83007106EB /* Calendar.storyboard */; };
+		C132E1EE21368E7B007106EB /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C132E1ED21368E7B007106EB /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +56,11 @@
 		C132E1DE213432D8007106EB /* BigTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigTask.swift; sourceTree = "<group>"; };
 		C132E1E0213432F8007106EB /* SubTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubTask.swift; sourceTree = "<group>"; };
 		C132E1E221343411007106EB /* ToDoTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTask.swift; sourceTree = "<group>"; };
+		C132E1E421367CCB007106EB /* AllTasksTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllTasksTableViewCell.swift; sourceTree = "<group>"; };
+		C132E1E521367CCB007106EB /* AllTasksTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AllTasksTableViewCell.xib; sourceTree = "<group>"; };
+		C132E1E921368D5D007106EB /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		C132E1EB21368D83007106EB /* Calendar.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		C132E1ED21368E7B007106EB /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		FA3B0A80117585FA6AAA8B1B /* Pods_Productivity.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Productivity.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +132,8 @@
 				C132E1D7212D874B007106EB /* EditViewController.swift */,
 				C132E1CC212C3263007106EB /* CreateViewController.swift */,
 				C132E1D2212D56A3007106EB /* OptionsPopupViewController.swift */,
+				C132E1E921368D5D007106EB /* CalendarViewController.swift */,
+				C132E1ED21368E7B007106EB /* CalendarCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -133,7 +145,9 @@
 				C132E1D9212E8324007106EB /* Create.storyboard */,
 				C132E1D4212D5BDC007106EB /* OptionsPopup.storyboard */,
 				C132E1B4212BE45F007106EB /* LaunchScreen.storyboard */,
+				C132E1EB21368D83007106EB /* Calendar.storyboard */,
 				C132E1C1212BE723007106EB /* Task Cell */,
+				C132E1E821367CE1007106EB /* All Tasks Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -149,6 +163,16 @@
 				C132E1E221343411007106EB /* ToDoTask.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C132E1E821367CE1007106EB /* All Tasks Cell */ = {
+			isa = PBXGroup;
+			children = (
+				C132E1E421367CCB007106EB /* AllTasksTableViewCell.swift */,
+				C132E1E521367CCB007106EB /* AllTasksTableViewCell.xib */,
+			);
+			name = "All Tasks Cell";
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		EF1F81BE29F58019B5C10D91 /* Frameworks */ = {
@@ -223,7 +247,9 @@
 				C132E1C0212BE70C007106EB /* TaskCell.xib in Resources */,
 				C132E1B6212BE45F007106EB /* LaunchScreen.storyboard in Resources */,
 				C132E1B3212BE45F007106EB /* Assets.xcassets in Resources */,
+				C132E1EC21368D83007106EB /* Calendar.storyboard in Resources */,
 				C132E1DB212E8324007106EB /* Create.storyboard in Resources */,
+				C132E1E721367CCB007106EB /* AllTasksTableViewCell.xib in Resources */,
 				C132E1B1212BE45D007106EB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,10 +282,12 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Productivity/Pods-Productivity-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftDate.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,6 +306,8 @@
 				C132E1DF213432D8007106EB /* BigTask.swift in Sources */,
 				C132E1CD212C3263007106EB /* CreateViewController.swift in Sources */,
 				C132E1C9212C02DD007106EB /* Task.swift in Sources */,
+				C132E1EE21368E7B007106EB /* CalendarCell.swift in Sources */,
+				C132E1E621367CCB007106EB /* AllTasksTableViewCell.swift in Sources */,
 				C132E1CF212D2C5D007106EB /* User.swift in Sources */,
 				C132E1D3212D56A3007106EB /* OptionsPopupViewController.swift in Sources */,
 				C132E1E321343411007106EB /* ToDoTask.swift in Sources */,
@@ -285,6 +315,7 @@
 				C132E1BF212BE70C007106EB /* TaskCell.swift in Sources */,
 				C132E1DD21342FFD007106EB /* Streak.swift in Sources */,
 				C132E1AC212BE45D007106EB /* AppDelegate.swift in Sources */,
+				C132E1EA21368D5D007106EB /* CalendarViewController.swift in Sources */,
 				C132E1E1213432F8007106EB /* SubTask.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

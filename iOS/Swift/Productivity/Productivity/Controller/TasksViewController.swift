@@ -88,6 +88,29 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 someTask.everyXDays = dict["everyXDays"] as! Int
                 someTask.weekDays = dict["weekDays"] as! [String : Int]
                 
+                if let streak = dict["streak"] {
+                    someTask.streak  = streak as! Int
+                } else {
+                    someTask.streak = 0 
+                }
+                
+                if let dueInXWeeks = dict["dueInXWeeks"] {
+                    someTask.dueInXDays  = dueInXWeeks as! Int * 7
+                } else {
+                    someTask.dueInXDays = 0
+                }
+                
+                if let dueInXDays = dict["dueInXDays"] {
+                     someTask.dueInXDays  = dueInXDays as! Int
+                } else {
+                    someTask.dueInXDays = 0
+                }
+//                if(dict["streak"] == nil) {
+//                    someTask.streak = 0
+//                } else {
+//                    someTask.streak = 0 = dict["streak"] as! Int
+//                }
+                
                 sampleData.append(someTask)
                 
                 
@@ -332,6 +355,12 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     //MARK:- Button Action
+    
+
+    @IBAction func showCalendarPRessed(_ sender: UIButton) {
+         self.performSegue(withIdentifier: "showCalendar", sender: self)
+    }
+    
     
     @IBAction func addTaskPressed(_ sender: UIButton) {
         
