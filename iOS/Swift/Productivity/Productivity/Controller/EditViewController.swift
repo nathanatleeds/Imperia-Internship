@@ -127,6 +127,8 @@ class EditViewController: UIViewController, UITextFieldDelegate, UIPickerViewDel
             for button in weekButtons {
                 if(button.isSelected) {
                     task.weekDays.updateValue(1, forKey: "\(button.tag)")
+                } else {
+                     task.weekDays.updateValue(0, forKey: "\(button.tag)")
                 }
             }
         }

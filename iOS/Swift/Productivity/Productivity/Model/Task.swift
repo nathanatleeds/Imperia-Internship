@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 class Task : NSObject {
     
@@ -22,6 +23,7 @@ class Task : NSObject {
     var timesADay : Int = 1
     var everyXWeeks : Int = 1
     var everyXDays : Int = 1
+    var startDate : DateInRegion = DateInRegion(Date(), region: Region.local)
     
     var streak : Int = 0
     var dueInXDays : Int = 0
@@ -109,7 +111,9 @@ class Task : NSObject {
                     "timesCompleted" : timesCompleted,
                     "everyXDays" : everyXDays,
                     "streak" : streak,
+                    "startDate" : startDate.toFormat("dd MMM yyyy HH:mm"),
                     "dueInXDays" : dueInXDays] as [String : Any]
+        
         
         
         return dict

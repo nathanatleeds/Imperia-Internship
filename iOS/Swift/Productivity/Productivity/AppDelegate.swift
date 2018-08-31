@@ -51,11 +51,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        print(date.minute)
 //        print(date.weekdayName(.short))
         
-        print((date + 1.weeks).weekday)
+        //print((date + 1.weeks).weekday)
         setNotificationsForToday()
         
         for i in 1...6 {
-           //print((date + i.days).weekday)
+           print((date + i.days))
             //print((date + i.days).weekOfYear)
             setWeeklyNotifications(forDate: (date + i.days))
 
@@ -200,22 +200,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                 }
                 
-                var notification = UNMutableNotificationContent()
-                notification.body = "\(title) \(timesCompleted) / \(timesADay)"
-                notification.badge = 1
-                notification.categoryIdentifier = "task.category"
-
-                var dateComponents = DateComponents()
-                dateComponents.weekday = date.weekday
-                dateComponents.hour = date.hour
-                dateComponents.minute = date.minute + 1
-                let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-                var request = UNNotificationRequest(identifier: "not1", content: notification, trigger: notificationTrigger)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-
-                notification.body = "Test"
-                request = UNNotificationRequest(identifier: "not2", content: notification, trigger: notificationTrigger)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//                var notification = UNMutableNotificationContent()
+//                notification.body = "\(title) \(timesCompleted) / \(timesADay)"
+//                notification.badge = 1
+//                notification.categoryIdentifier = "task.category"
+//
+//                var dateComponents = DateComponents()
+//                dateComponents.weekday = date.weekday
+//                dateComponents.hour = date.hour
+//                dateComponents.minute = date.minute + 1
+//                let notificationTrigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+//                var request = UNNotificationRequest(identifier: "not1", content: notification, trigger: notificationTrigger)
+//                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//
+//                notification.body = "Test"
+//                request = UNNotificationRequest(identifier: "not2", content: notification, trigger: notificationTrigger)
+//                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
 
 
             }

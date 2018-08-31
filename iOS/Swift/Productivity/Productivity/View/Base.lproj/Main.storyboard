@@ -94,9 +94,8 @@
                                     <action selector="addTaskPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lN4-22-vev"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGT-R8-EaJ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RGT-R8-EaJ">
                                 <rect key="frame" x="0.0" y="225" width="375" height="350"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="8bC-Xf-vdC" id="vfw-6b-raP"/>
@@ -105,6 +104,12 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="RGT-R8-EaJ" secondAttribute="bottom" constant="92" id="Zzr-4S-mHU"/>
+                            <constraint firstItem="RGT-R8-EaJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dEb-WT-GKJ"/>
+                            <constraint firstItem="RGT-R8-EaJ" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="225" id="ez0-5n-Hiq"/>
+                            <constraint firstItem="RGT-R8-EaJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gow-Yf-Ssw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Tasks" id="eYI-X1-mRT">

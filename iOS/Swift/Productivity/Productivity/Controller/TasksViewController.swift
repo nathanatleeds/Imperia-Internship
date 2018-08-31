@@ -51,12 +51,20 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
        // notification()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        taskTableView.reloadData()
+        updateUserLabels()
+    }
+    
     func initDefaults() {
           print("-------------")
         if(defaults.object(forKey: "tasks") == nil) {
             let task = Task()
             task.title = "Log"
             task.info = "Keep it up!"
+            for day in task.weekDays.keys {
+                task.weekDays.updateValue(1, forKey: day)
+            }
             savedData.append(task.toDictionary())
             
             print("wtf")
@@ -110,6 +118,17 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
 //                } else {
 //                    someTask.streak = 0 = dict["streak"] as! Int
 //                }
+                
+                if let startDate = dict["startDate"] {
+                    let dateString  = startDate as! String
+                    print(dateString)
+                    if let okdate = dateString.toDate("dd MMM yyyy HH:mm") {
+                         someTask.startDate = okdate
+                    }
+                   
+                } else {
+                    someTask.startDate = DateInRegion(Date(), region: Region.local)
+                }
                 
                 sampleData.append(someTask)
                 
@@ -186,7 +205,12 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func configureTableView() {
         taskTableView.rowHeight = UITableViewAutomaticDimension
-        //taskTableView.estimatedRowHeight = 65.0
+    
+        taskTableView.estimatedRowHeight = 80.0
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     //MARK:- Test
@@ -230,6 +254,9 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.iconImageView.image = UIImage(named: "up.png")
         cell.titleLabel.text = sampleData[indexPath.row].title
         cell.infoLabel.text = sampleData[indexPath.row].info
+        //cell.infoLabel.sizeToFit()
+        cell.infoLabel.numberOfLines = 0
+        cell.infoLabel.lineBreakMode = .byWordWrapping
         cell.timesDoneLabel.text = "\(sampleData[indexPath.row].timesCompleted) / \(sampleData[indexPath.row].timesADay)"
         cell.progressBar.progress = Float(sampleData[indexPath.row].timesCompleted) / Float((sampleData[indexPath.row].timesADay))
         
@@ -416,6 +443,10 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             popupVC.index = selectedIndex
             popupVC.task = selectedTask
             popupVC.delegate = self
+        } else if (segue.identifier == "showCalendar") {
+            let calendarVC = segue.destination as! CalendarViewController
+            calendarVC.sampleData = sampleData
+            calendarVC.sampleUser = sampleUser
         }
     }
     
@@ -466,6 +497,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         progressView.progress = Float(sampleUser.currentExp) / Float(sampleUser.neededExp)
         
         updateDefaults()
+        taskTableView.reloadData()
     }
     
     func updateDefaults() {
@@ -473,12 +505,13 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("sampleData............")
         print(sampleData)
         for data in sampleData {
-            print(data)
+            //print(data)
             savedData.append(data.toDictionary())
             print("savedData............")
             print(savedData)
         }
         
+      
         defaults.set(savedData, forKey: "tasks")
         defaults.set(sampleUser.toDictionary(), forKey: "user")
         defaults.synchronize()

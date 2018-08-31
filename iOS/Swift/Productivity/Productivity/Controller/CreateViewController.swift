@@ -13,7 +13,7 @@ protocol CreateTaskDelegate {
 }
 
 
-class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
 
     var newTask : Task = Task()
     var delegate : CreateTaskDelegate?
@@ -21,7 +21,7 @@ class CreateViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
 
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var infoTextField: UITextField!
+    @IBOutlet weak var infoTextField: UITextView!
     @IBOutlet weak var timesADayTextField: UITextField!
     @IBOutlet weak var everyXWeeksTextField: UITextField!
     
