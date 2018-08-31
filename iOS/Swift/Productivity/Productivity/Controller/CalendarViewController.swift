@@ -16,6 +16,7 @@ UIScrollViewDelegate, OptionsPopupDelegate{
 
 
     let formatter = DateFormatter()
+    var selectedDate = Date()
     
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var yearLabel: UILabel!
@@ -115,7 +116,9 @@ UIScrollViewDelegate, OptionsPopupDelegate{
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
         
-        let startDate = formatter.date(from: "2018 01 01")!
+        let today = DateInRegion(Date(), region: Region.local).toFormat("yyyy MM dd")
+        
+        let startDate = formatter.date(from: today)!
         let endDate = formatter.date(from: "2018 12 31")!
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
@@ -139,6 +142,7 @@ UIScrollViewDelegate, OptionsPopupDelegate{
 
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColour(view: cell, cellState: cellState)
+        selectedDate = date
         
         showCells(forDate: date)
         
@@ -277,11 +281,13 @@ UIScrollViewDelegate, OptionsPopupDelegate{
                 print ("Undone")
                 sampleUser.undoTask(undoneTask: sampleData[selectedIndex])
                 sampleData[selectedIndex].undoTask()
+                showCells(forDate: selectedDate)
                 taskTableView.reloadData()
 
             case "edit":
                 print ("Edited")
                 sampleData[selectedIndex] = task
+                showCells(forDate: selectedDate)
                 taskTableView.reloadData()
             
 
@@ -291,6 +297,7 @@ UIScrollViewDelegate, OptionsPopupDelegate{
                 sampleUser.coins += 500
 
                 //updateUserLabels()
+                showCells(forDate: selectedDate)
                 taskTableView.reloadData()
 
             default:

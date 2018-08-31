@@ -52,12 +52,14 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        initDefaults()
         taskTableView.reloadData()
         updateUserLabels()
     }
     
     func initDefaults() {
           print("-------------")
+        sampleData = [Task]()
         if(defaults.object(forKey: "tasks") == nil) {
             let task = Task()
             task.title = "Log"
@@ -148,6 +150,8 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("sample.......")
         print(sampleData)
         
+        
+        sampleUser = User()
         if(defaults.object(forKey: "user") == nil) {
             defaults.set(sampleUser.toDictionary(), forKey: "user")
         } else {
@@ -510,6 +514,7 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             print("savedData............")
             print(savedData)
         }
+        
         
       
         defaults.set(savedData, forKey: "tasks")

@@ -55,8 +55,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setNotificationsForToday()
         
         for i in 1...6 {
-           print((date + i.days))
+            //print((date + 53.weeks))
             //print((date + i.days).weekOfYear)
+            print("31.12.2018".toDate("dd.MM.yyyy")?.weekOfYear)
             setWeeklyNotifications(forDate: (date + i.days))
 
         }
@@ -71,7 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         for task in allTasks {
             let weekDays = task["weekDays"] as![String : Int]
             
-            if(weekDays["\(date.weekday)"] == 1) {
+            
+            
+            if(weekDays["\(date.weekday)"] == 1 && date.weekOfYear == 1) {
                 countTasks += 1
             }
         }
