@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         for i in 1...6 {
             //print((date + 53.weeks))
             //print((date + i.days).weekOfYear)
-            print("31.12.2018".toDate("dd.MM.yyyy")?.weekOfYear)
+            //print("31.12.2018".toDate("dd.MM.yyyy")?.weekOfYear)
             setWeeklyNotifications(forDate: (date + i.days))
 
         }
@@ -73,8 +73,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let weekDays = task["weekDays"] as![String : Int]
             
             
-            
-            if(weekDays["\(date.weekday)"] == 1 && date.weekOfYear == 1) {
+            let dateString  = task["startDate"] as! String
+            let okdate = dateString.toDate("dd MMM yyyy HH:mm")!
+
+            let everyXWeeks = task["everyXWeeks"] as! Int
+
+            if(weekDays["\(date.weekday)"] == 1 && (date.weekOfYear - okdate.weekOfYear) %  everyXWeeks == 0) {
                 countTasks += 1
             }
         }
@@ -145,6 +149,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         //setNotificationsForToday()
+//        if let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "firstNav") as? UINavigationController  {
+//            if let window = self.window, let rootViewController = window.rootViewController {
+//                var currentController = rootViewController
+//                while let presentedController = currentController.presentedViewController {
+//                    currentController = presentedController
+//                }
+//                currentController.present(controller, animated: true, completion: nil)
+//            }
+//        }
     }
     
     func setNotificationsForToday() {
@@ -273,6 +286,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             options: [])
         UNUserNotificationCenter.current().setNotificationCategories([taskCategory])
     }
+    
+
+//    public func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        if application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background {
+//            //opened from a push notification when the app was on background
+//
+//            print("from push")
+//        }
+//
+//    }
+    
+    
     /*
     func notification() {
         //get the notification center

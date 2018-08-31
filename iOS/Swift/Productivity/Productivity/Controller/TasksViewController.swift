@@ -45,16 +45,43 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         taskTableView.register(UINib(nibName: "TaskCell", bundle: nil), forCellReuseIdentifier: "taskCell")
         //testData()
         
+        NotificationCenter.default.addObserver(self, selector:#selector(TasksViewController.configureUser), name:
+            NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+        
         initDefaults()
-        updateUserLabels()
         configureTableView()
+        configureUser()
+        updateUserLabels()
        // notification()
     }
     
+   
+    
     override func viewWillAppear(_ animated: Bool) {
         initDefaults()
+        configureUser()
         taskTableView.reloadData()
         updateUserLabels()
+
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func configureUser() {
+        if !sampleUser.lastLogin.isToday {
+            sampleUser.lastLogin = DateInRegion(Date(), region: Region.local)
+            
+            for task in sampleData {
+                if task.completed || task.skipped {
+                    task.started = false
+                    task.completed = false
+                    task.skipped = false
+                    task.timesCompleted = 0
+                }
+            }
+        }
     }
     
     func initDefaults() {
@@ -163,6 +190,39 @@ class TasksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             sampleUser.currentExp = dict["currentExp"] as! Int
             sampleUser.coins = dict["coins"] as! Int
             
+            if let joinDate = dict["joinDate"] {
+                let dateString  = joinDate as! String
+                print(dateString)
+                if let okdate = dateString.toDate("dd MMM yyyy HH:mm") {
+                    sampleUser.joinDate = okdate
+                }
+            
+            } else {
+                sampleUser.joinDate = DateInRegion(Date(), region: Region.local)
+            }
+            
+            if let joinDate = dict["joinDate"] {
+                let dateString  = joinDate as! String
+                print(dateString)
+                if let okdate = dateString.toDate("dd MMM yyyy HH:mm") {
+                    sampleUser.joinDate = okdate
+                }
+                
+            } else {
+                sampleUser.joinDate = DateInRegion(Date(), region: Region.local)
+            }
+            
+            
+            if let lastLogin = dict["lastLogin"] {
+                let dateString  = lastLogin as! String
+                print(dateString)
+                if let okdate = dateString.toDate("dd MMM yyyy HH:mm") {
+                    sampleUser.lastLogin = okdate
+                }
+                
+            } else {
+                sampleUser.lastLogin = DateInRegion(Date(), region: Region.local)
+            }
 //            "level" : level,
 //            "neededExp" : neededExp,
 //            "currentExp" : currentExp,

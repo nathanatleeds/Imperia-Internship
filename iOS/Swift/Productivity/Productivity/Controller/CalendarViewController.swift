@@ -51,6 +51,9 @@ UIScrollViewDelegate, OptionsPopupDelegate{
         calendarView.visibleDates() { (visibleDates) in
             self.setupViewsOfCalender(from: visibleDates)
         }
+        
+        calendarView.selectDates([Date()])
+        
     }
     
     func configureTableView() {
@@ -117,9 +120,12 @@ UIScrollViewDelegate, OptionsPopupDelegate{
         formatter.locale = Calendar.current.locale
         
         let today = DateInRegion(Date(), region: Region.local).toFormat("yyyy MM dd")
+        let end = DateInRegion(Date(), region: Region.local)
+        let inAYear = (end + 1.years).toFormat("yyyy MM dd")
+        
         
         let startDate = formatter.date(from: today)!
-        let endDate = formatter.date(from: "2018 12 31")!
+        let endDate = formatter.date(from: inAYear)!
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate)
         return parameters

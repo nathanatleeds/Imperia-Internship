@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 class User : NSObject {
     
@@ -14,6 +15,8 @@ class User : NSObject {
     var neededExp : Int = 100
     var currentExp : Int = 0
     var coins : Int = 0
+    var joinDate : DateInRegion = DateInRegion(Date(), region: Region.local)
+    var lastLogin : DateInRegion = DateInRegion(Date(), region: Region.local)
 
     
     func toDictionary() -> [String : Any] {
@@ -21,7 +24,11 @@ class User : NSObject {
             "level" : level,
             "neededExp" : neededExp,
             "currentExp" : currentExp,
-            "coins" : coins] as [String : Any]
+            "coins" : coins,
+            "joinDate" : joinDate.toFormat("dd MMM yyyy HH:mm"),
+            "lastLogin" : lastLogin.toFormat("dd MMM yyyy HH:mm")] as [String : Any]
+        
+        
         
         return dict
     }

@@ -13,7 +13,7 @@
         <!--Tasks-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TasksViewController" customModule="Productivity" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="firstVC" id="BYZ-38-t0r" customClass="TasksViewController" customModule="Productivity" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -176,7 +176,7 @@
         <!--Navigation Controller-->
         <scene sceneID="qyx-wR-lFA">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Hff-pm-cE1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="firstNav" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Hff-pm-cE1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J5I-gf-Jrg">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
